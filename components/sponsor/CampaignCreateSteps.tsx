@@ -3,11 +3,11 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 
 const steps = [
-  { num: 1, label: "Basics", href: "/sponsor/campaigns/create/step-1" },
-  { num: 2, label: "QR Action", href: "/sponsor/campaigns/create/step-2" },
+  { num: 1, label: "Info", href: "/sponsor/campaigns/create/step-1" },
+  { num: 2, label: "Action", href: "/sponsor/campaigns/create/step-2" },
   { num: 3, label: "Packages", href: "/sponsor/campaigns/create/step-3" },
-  { num: 4, label: "Coupon", href: "/sponsor/campaigns/create/step-4" },
-  { num: 5, label: "Locations & Tags", href: "/sponsor/campaigns/create/step-5" },
+  { num: 4, label: "Coupons", href: "/sponsor/campaigns/create/step-4" },
+  { num: 5, label: "Locations", href: "/sponsor/campaigns/create/step-5" },
   { num: 6, label: "Review", href: "/sponsor/campaigns/create/review" },
 ];
 

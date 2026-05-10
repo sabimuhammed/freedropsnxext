@@ -25,50 +25,108 @@ export default function SponsorCreateStep1Page() {
 
       <SponsorCampaignCreateSteps current={1} />
 
-      <div className="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
-        <div className="p-10 border-b border-gray-100">
-          <h3 className="text-xl font-bold text-gray-900 mb-6">Campaign Basics</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">Campaign Name</label>
-                <input type="text" placeholder="e.g. Spring Oasis Launch 2024" className="w-full px-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] focus:border-[#B12B2C] outline-none transition-all text-sm" />
+      <div className="bg-white border border-slate-100 rounded-[32px] shadow-sm overflow-hidden">
+        <div className="p-10 space-y-10">
+          {/* Header */}
+          <div className="flex justify-between items-start">
+            <div className="space-y-2">
+              <div className="mb-2">
+                <span className="px-3 py-1 bg-red-50 text-[#B12B2C] text-[10px] font-bold uppercase tracking-widest rounded-full border border-red-100">Step 1 of 6</span>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">Start Date</label>
-                  <div className="relative">
-                    <Icon icon="lucide:calendar" className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                    <input type="date" className="w-full pl-11 pr-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] outline-none transition-all text-sm" />
-                  </div>
+              <h2 className="text-3xl font-bold text-slate-900">Campaign Basics</h2>
+              <p className="text-slate-500">Define your campaign identity and initial scheduling details.</p>
+            </div>
+          </div>
+
+          {/* Form + Tips */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
+            {/* Fields */}
+            <div className="md:col-span-8 space-y-8">
+              <div className="space-y-3">
+                <label htmlFor="campaign-name" className="block text-sm font-bold text-slate-700">
+                  Campaign Name <span className="text-[#B12B2C]">*</span>
+                </label>
+                <div className="relative">
+                  <Icon icon="lucide:tag" className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg" />
+                  <input
+                    type="text"
+                    id="campaign-name"
+                    placeholder="e.g. Summer Refresh 2024"
+                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#B12B2C] focus:border-[#B12B2C] outline-none transition-all text-sm"
+                  />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">End Date</label>
-                  <div className="relative">
-                    <Icon icon="lucide:calendar" className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                    <input type="date" className="w-full pl-11 pr-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] outline-none transition-all text-sm" />
-                  </div>
+              </div>
+
+              <div className="space-y-3">
+                <label htmlFor="launch-date" className="block text-sm font-bold text-slate-700">
+                  Launch Date <span className="text-[#B12B2C]">*</span>
+                </label>
+                <div className="relative">
+                  <Icon icon="lucide:calendar" className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg" />
+                  <input
+                    type="date"
+                    id="launch-date"
+                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#B12B2C] focus:border-[#B12B2C] outline-none transition-all text-sm"
+                  />
                 </div>
+              </div>
+
+              <div className="space-y-3">
+                <label htmlFor="notes" className="block text-sm font-bold text-slate-700">
+                  Internal Notes <span className="text-slate-400 font-normal">(Optional)</span>
+                </label>
+                <textarea
+                  id="notes"
+                  rows={4}
+                  placeholder="Any specific instructions or context for this campaign..."
+                  className="w-full px-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#B12B2C] focus:border-[#B12B2C] outline-none transition-all text-sm resize-none"
+                />
               </div>
             </div>
-            <div className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">Campaign Description</label>
-                <textarea rows={5} placeholder="Describe the purpose and goals of this campaign..." className="w-full px-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] outline-none transition-all text-sm resize-none" />
+
+            {/* Pro Tips */}
+            <div className="md:col-span-4">
+              <div className="bg-amber-50 border border-amber-100 rounded-2xl p-6 space-y-4">
+                <div className="flex items-center gap-2 text-amber-700">
+                  <Icon icon="lucide:lightbulb" className="text-xl" />
+                  <h3 className="text-sm font-bold">Pro Tips</h3>
+                </div>
+                <ul className="space-y-4">
+                  <li className="flex gap-3">
+                    <Icon icon="lucide:check-circle" className="text-amber-500 text-sm mt-0.5 shrink-0" />
+                    <p className="text-xs text-amber-800 leading-relaxed">
+                      <strong>Campaign Name:</strong> Use descriptive names for easier tracking in analytics.
+                    </p>
+                  </li>
+                  <li className="flex gap-3">
+                    <Icon icon="lucide:check-circle" className="text-amber-500 text-sm mt-0.5 shrink-0" />
+                    <p className="text-xs text-amber-800 leading-relaxed">
+                      <strong>Launch Date:</strong> We recommend setting this at least 14 days from today.
+                    </p>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="p-8 bg-slate-50/50 flex items-center justify-between">
-          <button className="px-8 py-3 text-sm font-bold text-slate-500 hover:text-slate-900 transition-colors">Save as Draft</button>
-          <Link
-            href="/sponsor/campaigns/create/step-2"
-            className="flex items-center gap-3 bg-[#B12B2C] hover:opacity-90 text-white px-10 py-4 rounded-2xl text-sm font-bold transition-all shadow-lg shadow-red-200"
-          >
-            Next Step <Icon icon="lucide:arrow-right" />
-          </Link>
+          {/* Bottom Nav */}
+          <div className="flex items-center justify-between pt-10 border-t border-slate-100">
+            <Link href="/sponsor/campaigns" className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold transition-all text-sm">
+              Cancel
+            </Link>
+            <Link
+              href="/sponsor/campaigns/create/step-2"
+              className="flex items-center gap-3 bg-[#B12B2C] hover:opacity-90 text-white px-10 py-4 rounded-2xl font-bold text-sm transition-all shadow-lg shadow-red-200"
+            >
+              Next Step: QR Action <Icon icon="lucide:arrow-right" />
+            </Link>
+          </div>
         </div>
+      </div>
+
+      <div className="mt-8 flex items-center justify-center gap-3 text-slate-400 text-sm">
+        <Icon icon="lucide:sparkles" />
+        <span>Clear basics help streamline your production timeline.</span>
       </div>
     </div>
   );
