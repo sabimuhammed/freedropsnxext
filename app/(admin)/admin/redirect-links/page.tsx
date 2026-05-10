@@ -1,4 +1,6 @@
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedTbody, AnimatedRow } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Redirect Links — Global | FreeDrops Admin" };
 
@@ -11,6 +13,7 @@ const links = [
 
 export default function RedirectLinksPage() {
   return (
+    <AnimatedPage>
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -36,9 +39,9 @@ export default function RedirectLinksPage() {
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50 text-sm">
+            <AnimatedTbody className="divide-y divide-gray-50 text-sm">
               {links.map((l) => (
-                <tr key={l.slug} className="hover:bg-gray-50/50 transition-colors">
+                <AnimatedRow key={l.slug} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-6 py-4 font-mono font-semibold text-[#D63839]">/{l.slug}</td>
                   <td className="px-6 py-4 text-gray-500 text-xs max-w-xs truncate">{l.destination}</td>
                   <td className="px-6 py-4 text-gray-700 font-medium">{l.campaign}</td>
@@ -58,12 +61,13 @@ export default function RedirectLinksPage() {
                       <button className="text-gray-400 hover:text-red-500"><Icon icon="lucide:trash-2" /></button>
                     </div>
                   </td>
-                </tr>
+                </AnimatedRow>
               ))}
-            </tbody>
+            </AnimatedTbody>
           </table>
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

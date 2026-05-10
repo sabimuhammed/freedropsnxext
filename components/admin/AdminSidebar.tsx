@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icon } from "@iconify/react";
+import { motion } from "framer-motion";
 
 const navItems = [
   { id: "dashboard", href: "/admin/dashboard", icon: "lucide:layout-dashboard", label: "Dashboard Overview" },
@@ -30,35 +31,53 @@ export default function AdminSidebar() {
       </div>
 
       <nav className="mt-4 flex-1 space-y-1 px-3">
-        {navItems.map((item) => (
-          <Link
-            key={item.id}
-            href={item.href}
-            className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg sidebar-link ${
-              isActive(item.href) ? "sidebar-link-active" : ""
-            }`}
-          >
-            <Icon icon={item.icon} className="mr-3 text-lg" />
-            {item.label}
-          </Link>
-        ))}
+        {navItems.map((item) => {
+          const active = isActive(item.href);
+          return (
+            <motion.div key={item.id} whileTap={{ scale: 0.97 }} className="relative">
+              {active && (
+                <motion.span
+                  layoutId="admin-nav-indicator"
+                  className="absolute inset-0 bg-red-50 rounded-lg border-r-2 border-[#D63839]"
+                  transition={{ type: "spring", stiffness: 380, damping: 34 }}
+                />
+              )}
+              <Link
+                href={item.href}
+                className={`relative flex items-center px-4 py-3 text-sm font-medium rounded-lg sidebar-link ${active ? "text-[#D63839]" : ""}`}
+              >
+                <Icon icon={item.icon} className="mr-3 text-lg" />
+                {item.label}
+              </Link>
+            </motion.div>
+          );
+        })}
 
         <div className="pt-4 pb-2 px-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
           Reporting
         </div>
 
-        {reportingItems.map((item) => (
-          <Link
-            key={item.id}
-            href={item.href}
-            className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg sidebar-link ${
-              isActive(item.href) ? "sidebar-link-active" : ""
-            }`}
-          >
-            <Icon icon={item.icon} className="mr-3 text-lg" />
-            {item.label}
-          </Link>
-        ))}
+        {reportingItems.map((item) => {
+          const active = isActive(item.href);
+          return (
+            <motion.div key={item.id} whileTap={{ scale: 0.97 }} className="relative">
+              {active && (
+                <motion.span
+                  layoutId="admin-nav-indicator"
+                  className="absolute inset-0 bg-red-50 rounded-lg border-r-2 border-[#D63839]"
+                  transition={{ type: "spring", stiffness: 380, damping: 34 }}
+                />
+              )}
+              <Link
+                href={item.href}
+                className={`relative flex items-center px-4 py-3 text-sm font-medium rounded-lg sidebar-link ${active ? "text-[#D63839]" : ""}`}
+              >
+                <Icon icon={item.icon} className="mr-3 text-lg" />
+                {item.label}
+              </Link>
+            </motion.div>
+          );
+        })}
       </nav>
 
       <div className="p-4 mt-auto border-t border-gray-100">

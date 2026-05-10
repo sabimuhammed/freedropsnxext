@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedTbody, AnimatedRow } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Sponsor Profile — Campaigns | FreeDrops" };
 
@@ -11,6 +13,7 @@ const campaigns = [
 
 export default function SponsorCampaignsPage() {
   return (
+    <AnimatedPage>
     <div>
       <nav className="flex mb-4" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-2 text-xs">
@@ -53,9 +56,9 @@ export default function SponsorCampaignsPage() {
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50 text-sm">
+            <AnimatedTbody className="divide-y divide-gray-50 text-sm">
               {campaigns.map((c) => (
-                <tr key={c.name} className="hover:bg-gray-50/50 transition-colors">
+                <AnimatedRow key={c.name} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-6 py-4 font-bold text-gray-900">{c.name}</td>
                   <td className="px-6 py-4">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${c.statusColor}`}>{c.status}</span>
@@ -67,12 +70,13 @@ export default function SponsorCampaignsPage() {
                   <td className="px-6 py-4 text-right">
                     <Link href="/admin/campaigns/1/overview" className="text-xs font-bold text-[#D63839] hover:text-red-800 uppercase tracking-wide">View →</Link>
                   </td>
-                </tr>
+                </AnimatedRow>
               ))}
-            </tbody>
+            </AnimatedTbody>
           </table>
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

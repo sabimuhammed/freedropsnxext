@@ -1,4 +1,6 @@
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedTbody, AnimatedRow } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Locations Management | FreeDrops Admin" };
 
@@ -13,6 +15,7 @@ const locations = [
 
 export default function LocationsManagementPage() {
   return (
+    <AnimatedPage>
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -65,9 +68,9 @@ export default function LocationsManagementPage() {
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50 text-sm">
+            <AnimatedTbody className="divide-y divide-gray-50 text-sm">
               {locations.map((l) => (
-                <tr key={l.name} className="hover:bg-gray-50/50 transition-colors">
+                <AnimatedRow key={l.name} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-6 py-4 font-semibold text-gray-900">{l.name}</td>
                   <td className="px-6 py-4 text-gray-600">{l.area}</td>
                   <td className="px-6 py-4 text-gray-600">{l.emirate}</td>
@@ -86,12 +89,13 @@ export default function LocationsManagementPage() {
                       <button className="text-gray-400 hover:text-red-500"><Icon icon="lucide:trash-2" /></button>
                     </div>
                   </td>
-                </tr>
+                </AnimatedRow>
               ))}
-            </tbody>
+            </AnimatedTbody>
           </table>
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

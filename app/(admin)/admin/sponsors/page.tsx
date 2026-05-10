@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedTbody, AnimatedRow } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Sponsors | FreeDrops Admin" };
 
@@ -12,6 +14,7 @@ const sponsors = [
 
 export default function SponsorsPage() {
   return (
+    <AnimatedPage>
     <div>
       <header className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
         <div>
@@ -70,9 +73,9 @@ export default function SponsorsPage() {
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50">
+            <AnimatedTbody className="divide-y divide-gray-50">
               {sponsors.map((s) => (
-                <tr key={s.name} className="text-sm text-gray-700 hover:bg-gray-50/50 transition-colors">
+                <AnimatedRow key={s.name} className="text-sm text-gray-700 hover:bg-gray-50/50 transition-colors">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <div className={`w-9 h-9 rounded-full ${s.bg} flex items-center justify-center ${s.color} font-bold text-xs uppercase`}>
@@ -107,9 +110,9 @@ export default function SponsorsPage() {
                       View Profile<Icon icon="lucide:chevron-right" />
                     </Link>
                   </td>
-                </tr>
+                </AnimatedRow>
               ))}
-            </tbody>
+            </AnimatedTbody>
           </table>
         </div>
 
@@ -129,5 +132,6 @@ export default function SponsorsPage() {
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

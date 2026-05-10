@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedGrid, AnimatedCell } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Sponsor Profile — Masafi Water | FreeDrops" };
 
 export default function SponsorProfilePage() {
   return (
+    <AnimatedPage>
     <div>
       <nav className="flex mb-4" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-2 text-xs">
@@ -42,22 +45,22 @@ export default function SponsorProfilePage() {
         </nav>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <AnimatedGrid className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {[
           { label: "Total Campaigns", value: "12", icon: "lucide:megaphone", color: "text-[#D63839]", bg: "bg-red-50" },
           { label: "Total Scans", value: "48,204", icon: "lucide:droplets", color: "text-emerald-600", bg: "bg-emerald-50" },
           { label: "Total Leads", value: "3,812", icon: "lucide:users", color: "text-blue-600", bg: "bg-blue-50" },
           { label: "Avg. Conversion", value: "7.9%", icon: "lucide:trending-up", color: "text-purple-600", bg: "bg-purple-50" },
         ].map((s) => (
-          <div key={s.label} className="stat-card p-5 rounded-2xl">
+          <AnimatedCell key={s.label} className="stat-card p-5 rounded-2xl">
             <div className={`w-9 h-9 ${s.bg} rounded-xl flex items-center justify-center mb-3`}>
               <Icon icon={s.icon} className={`${s.color} text-lg`} />
             </div>
             <p className="text-xl font-bold text-gray-900">{s.value}</p>
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{s.label}</p>
-          </div>
+          </AnimatedCell>
         ))}
-      </div>
+      </AnimatedGrid>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
@@ -98,5 +101,6 @@ export default function SponsorProfilePage() {
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedGrid, AnimatedCell, AnimatedTbody, AnimatedRow } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "My Campaigns | FreeDrops Sponsor Portal" };
 
@@ -12,6 +14,7 @@ const campaigns = [
 
 export default function MyCampaignsPage() {
   return (
+    <AnimatedPage>
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -26,19 +29,19 @@ export default function MyCampaignsPage() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <AnimatedGrid className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {[
           { label: "Total", value: "4", color: "text-gray-900" },
           { label: "Live", value: "1", color: "text-green-600" },
           { label: "In Review", value: "1", color: "text-amber-600" },
           { label: "Total Scans", value: "12,504", color: "text-[#B12B2C]" },
         ].map((s) => (
-          <div key={s.label} className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
+          <AnimatedCell key={s.label} className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">{s.label}</p>
             <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
-          </div>
+          </AnimatedCell>
         ))}
-      </div>
+      </AnimatedGrid>
 
       <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
         <div className="p-4 border-b border-gray-100 flex gap-4">
@@ -67,9 +70,9 @@ export default function MyCampaignsPage() {
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50 text-sm">
+            <AnimatedTbody className="divide-y divide-gray-50 text-sm">
               {campaigns.map((c) => (
-                <tr key={c.name} className="hover:bg-gray-50/50 transition-colors">
+                <AnimatedRow key={c.name} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-6 py-4 font-bold text-gray-900">{c.name}</td>
                   <td className="px-6 py-4">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${c.statusColor}`}>{c.status}</span>
@@ -83,12 +86,13 @@ export default function MyCampaignsPage() {
                       View →
                     </Link>
                   </td>
-                </tr>
+                </AnimatedRow>
               ))}
-            </tbody>
+            </AnimatedTbody>
           </table>
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

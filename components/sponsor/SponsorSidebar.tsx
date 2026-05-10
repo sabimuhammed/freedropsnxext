@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icon } from "@iconify/react";
+import { motion } from "framer-motion";
 
 const navItems = [
   { id: "dashboard", href: "/sponsor/dashboard", icon: "lucide:layout-dashboard", label: "Dashboard" },
@@ -24,18 +25,27 @@ export default function SponsorSidebar() {
       </div>
 
       <nav className="mt-4 flex-1 space-y-1 px-3">
-        {navItems.map((item) => (
-          <Link
-            key={item.id}
-            href={item.href}
-            className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg sidebar-link ${
-              isActive(item.href) ? "sidebar-link-active" : ""
-            }`}
-          >
-            <Icon icon={item.icon} className="mr-3 text-lg" />
-            {item.label}
-          </Link>
-        ))}
+        {navItems.map((item) => {
+          const active = isActive(item.href);
+          return (
+            <motion.div key={item.id} whileTap={{ scale: 0.97 }} className="relative">
+              {active && (
+                <motion.span
+                  layoutId="sponsor-nav-indicator"
+                  className="absolute inset-0 bg-red-50 rounded-lg border-r-2 border-[#B12B2C]"
+                  transition={{ type: "spring", stiffness: 380, damping: 34 }}
+                />
+              )}
+              <Link
+                href={item.href}
+                className={`relative flex items-center px-4 py-3 text-sm font-medium rounded-lg sidebar-link ${active ? "text-[#B12B2C]" : ""}`}
+              >
+                <Icon icon={item.icon} className="mr-3 text-lg" />
+                {item.label}
+              </Link>
+            </motion.div>
+          );
+        })}
       </nav>
 
       <div className="p-4 mt-auto border-t border-gray-100">

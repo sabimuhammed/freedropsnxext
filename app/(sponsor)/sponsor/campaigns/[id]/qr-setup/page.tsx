@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
 
 export const metadata = { title: "QR Action Setup | FreeDrops Sponsor Portal" };
 
 export default function QRSetupPage({ params }: { params: { id: string } }) {
   return (
+    <AnimatedPage>
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -69,5 +71,6 @@ export default function QRSetupPage({ params }: { params: { id: string } }) {
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

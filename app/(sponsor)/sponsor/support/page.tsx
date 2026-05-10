@@ -1,9 +1,11 @@
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
 
 export const metadata = { title: "Support | FreeDrops Sponsor Portal" };
 
 export default function SponsorSupportPage() {
   return (
+    <AnimatedPage>
     <div className="max-w-3xl mx-auto">
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900">Support</h1>
@@ -88,5 +90,6 @@ export default function SponsorSupportPage() {
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedGrid, AnimatedCell, AnimatedTbody, AnimatedRow } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Admin Dashboard | FreeDrops" };
 
@@ -21,6 +23,7 @@ const recentCampaigns = [
 
 export default function AdminDashboardPage() {
   return (
+    <AnimatedPage>
     <div>
       <header className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
         <div>
@@ -52,9 +55,9 @@ export default function AdminDashboardPage() {
         </div>
       </header>
 
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+      <AnimatedGrid className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         {stats.map((s) => (
-          <div key={s.label} className="stat-card p-5 rounded-2xl">
+          <AnimatedCell key={s.label} className="stat-card p-5 rounded-2xl">
             <div className="flex items-start justify-between mb-4">
               <div className={`w-10 h-10 ${s.bg} rounded-xl flex items-center justify-center`}>
                 <Icon icon={s.icon} className={`${s.color} text-xl`} />
@@ -63,9 +66,9 @@ export default function AdminDashboardPage() {
             <p className="text-2xl font-bold text-gray-900 mb-1">{s.value}</p>
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{s.label}</p>
             <p className="text-xs text-gray-500 mt-1">{s.sub}</p>
-          </div>
+          </AnimatedCell>
         ))}
-      </div>
+      </AnimatedGrid>
 
       <div className="bg-white border border-gray-100 rounded-2xl shadow-sm">
         <div className="p-6 border-b border-gray-50 flex items-center justify-between">
@@ -84,9 +87,9 @@ export default function AdminDashboardPage() {
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50 text-sm">
+            <AnimatedTbody className="divide-y divide-gray-50 text-sm">
               {recentCampaigns.map((c) => (
-                <tr key={c.name} className="hover:bg-gray-50/50 transition-colors">
+                <AnimatedRow key={c.name} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-6 py-4 font-bold text-gray-900">{c.name}</td>
                   <td className="px-6 py-4 text-gray-600">{c.sponsor}</td>
                   <td className="px-6 py-4">
@@ -101,12 +104,13 @@ export default function AdminDashboardPage() {
                       View →
                     </Link>
                   </td>
-                </tr>
+                </AnimatedRow>
               ))}
-            </tbody>
+            </AnimatedTbody>
           </table>
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

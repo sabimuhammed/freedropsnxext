@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
 
 export const metadata = { title: "Sponsor Login | FreeDrops" };
 
 export default function SponsorLoginPage() {
   return (
+    <AnimatedPage>
     <main className="flex-1 flex items-center justify-center p-6">
       <div className="w-full max-w-md">
         <div className="bg-white login-card p-10 rounded-3xl shadow-sm border border-slate-100">
@@ -86,5 +88,6 @@ export default function SponsorLoginPage() {
         </div>
       </div>
     </main>
+    </AnimatedPage>
   );
 }

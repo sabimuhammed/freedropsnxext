@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedGrid, AnimatedCell, AnimatedTbody, AnimatedRow } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Sponsor Dashboard | FreeDrops" };
 
@@ -18,6 +20,7 @@ const campaigns = [
 
 export default function SponsorDashboardPage() {
   return (
+    <AnimatedPage>
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -32,17 +35,17 @@ export default function SponsorDashboardPage() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <AnimatedGrid className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {stats.map((s) => (
-          <div key={s.label} className="stat-card p-5 rounded-2xl">
+          <AnimatedCell key={s.label} className="stat-card p-5 rounded-2xl">
             <div className={`w-10 h-10 ${s.bg} rounded-xl flex items-center justify-center mb-3`}>
               <Icon icon={s.icon} className={`${s.color} text-xl`} />
             </div>
             <p className="text-2xl font-bold text-gray-900">{s.value}</p>
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{s.label}</p>
-          </div>
+          </AnimatedCell>
         ))}
-      </div>
+      </AnimatedGrid>
 
       <div className="bg-white border border-gray-100 rounded-2xl shadow-sm">
         <div className="p-6 border-b border-gray-50 flex items-center justify-between">
@@ -61,9 +64,9 @@ export default function SponsorDashboardPage() {
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50 text-sm">
+            <AnimatedTbody className="divide-y divide-gray-50 text-sm">
               {campaigns.map((c) => (
-                <tr key={c.name} className="hover:bg-gray-50/50 transition-colors">
+                <AnimatedRow key={c.name} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-6 py-4 font-bold text-gray-900">{c.name}</td>
                   <td className="px-6 py-4">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${c.statusColor}`}>{c.status}</span>
@@ -76,12 +79,13 @@ export default function SponsorDashboardPage() {
                       View →
                     </Link>
                   </td>
-                </tr>
+                </AnimatedRow>
               ))}
-            </tbody>
+            </AnimatedTbody>
           </table>
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

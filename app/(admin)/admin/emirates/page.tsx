@@ -1,4 +1,6 @@
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedGrid, AnimatedCell } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Manage Emirates | FreeDrops Admin" };
 
@@ -14,6 +16,7 @@ const emirates = [
 
 export default function ManageEmiratesPage() {
   return (
+    <AnimatedPage>
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -25,9 +28,9 @@ export default function ManageEmiratesPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {emirates.map((e) => (
-          <div key={e.name} className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-[#D63839] transition-all cursor-pointer">
+          <AnimatedCell key={e.name} className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-[#D63839] transition-all cursor-pointer">
             <div className="flex items-start justify-between mb-4">
               <div className={`w-10 h-10 rounded-xl ${e.color.split(" ")[0]} flex items-center justify-center`}>
                 <Icon icon="lucide:map-pin" className={`${e.color.split(" ")[1]} text-xl`} />
@@ -45,9 +48,10 @@ export default function ManageEmiratesPage() {
                 <p className="font-bold text-gray-900 mt-0.5">{e.bottles}</p>
               </div>
             </div>
-          </div>
+          </AnimatedCell>
         ))}
-      </div>
+      </AnimatedGrid>
     </div>
+    </AnimatedPage>
   );
 }
