@@ -7,9 +7,9 @@ export const metadata = { title: "Admin Dashboard | FreeDrops" };
 
 const stats = [
   {
-    label: "Bottles Scanned (49.8%)",
+    label: "Bottles Scanned",
     value: "12,450",
-    suffix: "/ 25,000",
+    // suffix: "/ 25,000",
     icon: "lucide:package-check",
     color: "text-[#D63839]",
     bg: "bg-red-50",
@@ -120,11 +120,11 @@ export default function AdminDashboardPage() {
             <p className="text-sm text-gray-500 font-medium">{s.label}</p>
             <h3 className="text-2xl font-bold text-gray-900 mt-1">
               {s.value}{" "}
-              {s.suffix && <span className="text-sm text-gray-400 font-medium">{s.suffix}</span>}
+              {/* {s.suffix && <span className="text-sm text-gray-400 font-medium">{s.suffix}</span>} */}
             </h3>
-            {s.sub && (
+            {/* {s.sub && (
               <p className="text-[10px] text-gray-400 mt-2 uppercase tracking-wide">{s.sub}</p>
-            )}
+            )} */}
           </AnimatedCell>
         ))}
       </AnimatedGrid>
