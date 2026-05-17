@@ -58,12 +58,18 @@ export default function CreateCampaignStep1Page() {
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Status</label>
-                <select className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] focus:border-[#D63839] outline-none transition-all text-sm font-medium text-gray-700">
-                  <option value="draft">Draft</option>
-                  <option value="review">Pending Review</option>
-                  <option value="approved">Pre-Approved</option>
-                </select>
-                <p className="text-xs text-gray-500 leading-relaxed">Newly created campaigns are set to 'Draft' by default.</p>
+                <div className="flex items-center gap-4 bg-gray-50 p-2 rounded-xl border border-gray-100">
+                  <select className="flex-1 bg-transparent border-none text-sm font-semibold text-gray-700 focus:ring-0 outline-none cursor-pointer">
+                    <option value="draft">Draft</option>
+                    <option value="review">Pending Review</option>
+                    <option value="approved">Pre-Approved</option>
+                  </select>
+                  <div className="flex items-center gap-2 px-3 py-1 bg-white rounded-lg border border-gray-200 shadow-sm shrink-0">
+                    <div className="w-2 h-2 rounded-full bg-gray-400" />
+                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wide">Inactive</span>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-500 leading-relaxed">Newly created campaigns are set to 'Draft' by default. This campaign will not be visible to sponsors until approved.</p>
               </div>
             </div>
           </div>

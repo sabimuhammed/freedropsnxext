@@ -1,11 +1,12 @@
 import Link from "next/link";
 
 const tabs = [
-  { label: "Overview", href: "/admin/campaigns/[id]/overview", key: "overview" },
-  { label: "QR Links", href: "/admin/campaigns/[id]/qr-links", key: "qr-links" },
-  { label: "Analytics", href: "/admin/campaigns/[id]/analytics", key: "analytics" },
-  { label: "Leads", href: "/admin/campaigns/[id]/leads", key: "leads", badge: "24" },
-  { label: "Creative", href: "/admin/campaigns/[id]/creative", key: "creative" },
+  { label: "Overview",      href: "/admin/campaigns/[id]/overview",      key: "overview" },
+  { label: "Project Brief", href: "/admin/campaigns/[id]/brief",          key: "brief" },
+  { label: "QR Links",      href: "/admin/campaigns/[id]/qr-links",       key: "qr-links" },
+  { label: "Analytics",     href: "/admin/campaigns/[id]/analytics",      key: "analytics" },
+  { label: "Leads",         href: "/admin/campaigns/[id]/leads",          key: "leads", badge: "242" },
+  { label: "Creative",      href: "/admin/campaigns/[id]/creative",       key: "creative" },
 ];
 
 export default function CampaignDetailTabs({ id, active }: { id: string; active: string }) {
