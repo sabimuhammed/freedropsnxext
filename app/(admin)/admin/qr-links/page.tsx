@@ -71,7 +71,7 @@ export default function QRLinksGlobalPage() {
                 <th className="px-6 py-4 font-semibold text-center">Bottles</th>
                 <th className="px-6 py-4 font-semibold">Scans</th>
                 <th className="px-6 py-4 font-semibold">Progress</th>
-                <th className="px-6 py-4 font-semibold">QR Code</th>
+                <th className="px-6 py-4 font-semibold whitespace-nowrap">QR Code</th>
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
