@@ -71,6 +71,7 @@ export default function QRLinksGlobalPage() {
                 <th className="px-6 py-4 font-semibold text-center">Bottles</th>
                 <th className="px-6 py-4 font-semibold">Scans</th>
                 <th className="px-6 py-4 font-semibold">Progress</th>
+                <th className="px-6 py-4 font-semibold">QR Code</th>
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
@@ -97,11 +98,11 @@ export default function QRLinksGlobalPage() {
                       <span className="text-xs text-gray-500 w-8">{q.pct}%</span>
                     </div>
                   </td>
+                  <td className="px-6 py-4">
+                    <img src="/qr8.png" alt="QR Code" className="w-12 h-12 rounded" />
+                  </td>
                   <td className="px-6 py-4 text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <button className="text-gray-400 hover:text-[#D63839]"><Icon icon="lucide:download" /></button>
-                      <button className="text-gray-400 hover:text-[#D63839]"><Icon icon="lucide:copy" /></button>
-                    </div>
+                    <button className="text-gray-400 hover:text-[#D63839]"><Icon icon="lucide:download" /></button>
                   </td>
                 </AnimatedRow>
               ))}
