@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import CampaignDetailTabs from "@/components/admin/CampaignDetailTabs";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedGrid, AnimatedCell, AnimatedTbody, AnimatedRow } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Campaign Detail — Leads | FreeDrops Admin" };
 
@@ -20,6 +22,7 @@ const statusColors: Record<string, string> = {
 
 export default function CampaignLeadsPage({ params }: { params: { id: string } }) {
   return (
+    <AnimatedPage>
     <div className="max-w-6xl mx-auto">
       <div className="flex items-end justify-between mb-8">
         <div>
@@ -39,18 +42,18 @@ export default function CampaignLeadsPage({ params }: { params: { id: string } }
 
       <CampaignDetailTabs id={params.id} active="leads" />
 
-      <div className="grid grid-cols-3 gap-4 mb-6">
+      <AnimatedGrid className="grid grid-cols-3 gap-4 mb-6">
         {[
           { label: "Total Leads", value: "452", color: "text-gray-900" },
           { label: "Contacted", value: "186", color: "text-amber-600" },
           { label: "Converted", value: "63", color: "text-green-600" },
         ].map((s) => (
-          <div key={s.label} className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
+          <AnimatedCell key={s.label} className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">{s.label}</p>
             <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
-          </div>
+          </AnimatedCell>
         ))}
-      </div>
+      </AnimatedGrid>
 
       <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
         <div className="p-4 border-b border-gray-100 flex gap-4">
@@ -77,9 +80,9 @@ export default function CampaignLeadsPage({ params }: { params: { id: string } }
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50 text-sm">
+            <AnimatedTbody className="divide-y divide-gray-50 text-sm">
               {leads.map((l) => (
-                <tr key={l.name} className="hover:bg-gray-50/50 transition-colors">
+                <AnimatedRow key={l.name} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-6 py-4 font-semibold text-gray-900">{l.name}</td>
                   <td className="px-6 py-4 text-gray-600">{l.phone}</td>
                   <td className="px-6 py-4 text-gray-600">{l.location}</td>
@@ -90,12 +93,13 @@ export default function CampaignLeadsPage({ params }: { params: { id: string } }
                   <td className="px-6 py-4 text-right">
                     <button className="text-xs font-bold text-[#D63839] hover:underline">View</button>
                   </td>
-                </tr>
+                </AnimatedRow>
               ))}
-            </tbody>
+            </AnimatedTbody>
           </table>
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

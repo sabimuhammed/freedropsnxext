@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedGrid, AnimatedCell } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Campaign Creative | FreeDrops Sponsor Portal" };
 
@@ -11,6 +13,7 @@ const assets = [
 
 export default function SponsorCampaignCreativePage({ params }: { params: { id: string } }) {
   return (
+    <AnimatedPage>
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -45,9 +48,9 @@ export default function SponsorCampaignCreativePage({ params }: { params: { id: 
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <AnimatedGrid className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {assets.map((a) => (
-          <div key={a.name} className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#B12B2C] transition-all">
+          <AnimatedCell key={a.name} className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#B12B2C] transition-all">
             <div className="bg-gray-50 h-36 flex items-center justify-center">
               <Icon icon="lucide:image" className="text-4xl text-gray-300" />
             </div>
@@ -64,9 +67,10 @@ export default function SponsorCampaignCreativePage({ params }: { params: { id: 
                 <button className="text-gray-400 hover:text-red-500"><Icon icon="lucide:trash-2" className="text-sm" /></button>
               </div>
             </div>
-          </div>
+          </AnimatedCell>
         ))}
-      </div>
+      </AnimatedGrid>
     </div>
+    </AnimatedPage>
   );
 }

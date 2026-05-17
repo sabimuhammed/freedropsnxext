@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import CampaignDetailTabs from "@/components/admin/CampaignDetailTabs";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedGrid, AnimatedCell } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Campaign Detail — Creative | FreeDrops Admin" };
 
@@ -19,6 +21,7 @@ const statusColors: Record<string, string> = {
 
 export default function CampaignCreativePage({ params }: { params: { id: string } }) {
   return (
+    <AnimatedPage>
     <div className="max-w-6xl mx-auto">
       <div className="flex items-end justify-between mb-8">
         <div>
@@ -38,9 +41,9 @@ export default function CampaignCreativePage({ params }: { params: { id: string 
 
       <CampaignDetailTabs id={params.id} active="creative" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+      <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
         {assets.map((a) => (
-          <div key={a.name} className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#D63839] transition-all">
+          <AnimatedCell key={a.name} className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#D63839] transition-all">
             <div className="bg-gray-50 h-36 flex items-center justify-center">
               <Icon icon={a.format === "SVG" ? "lucide:image" : a.format === "ZIP" ? "lucide:archive" : "lucide:image"} className="text-4xl text-gray-300" />
             </div>
@@ -59,9 +62,10 @@ export default function CampaignCreativePage({ params }: { params: { id: string 
                 <button className="text-gray-400 hover:text-gray-600"><Icon icon="lucide:download" className="text-sm" /></button>
               </div>
             </div>
-          </div>
+          </AnimatedCell>
         ))}
-      </div>
+      </AnimatedGrid>
     </div>
+    </AnimatedPage>
   );
 }

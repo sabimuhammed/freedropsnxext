@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedGrid, AnimatedCell } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "QR Downloads | FreeDrops Sponsor Portal" };
 
@@ -11,6 +13,7 @@ const qrCodes = [
 
 export default function QRDownloadsPage({ params }: { params: { id: string } }) {
   return (
+    <AnimatedPage>
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -37,9 +40,9 @@ export default function QRDownloadsPage({ params }: { params: { id: string } }) 
         </nav>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <AnimatedGrid className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         {qrCodes.map((q) => (
-          <div key={q.location} className="bg-white border border-gray-200 rounded-2xl p-6">
+          <AnimatedCell key={q.location} className="bg-white border border-gray-200 rounded-2xl p-6">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <p className="font-bold text-gray-900 text-sm">{q.location}</p>
@@ -60,9 +63,10 @@ export default function QRDownloadsPage({ params }: { params: { id: string } }) 
               <div className="bg-[#B12B2C] h-1.5 rounded-full" style={{ width: `${q.pct}%` }} />
             </div>
             <p className="text-[10px] text-gray-400 mt-2">{q.scans} / {q.bottles} bottles</p>
-          </div>
+          </AnimatedCell>
         ))}
-      </div>
+      </AnimatedGrid>
     </div>
+    </AnimatedPage>
   );
 }

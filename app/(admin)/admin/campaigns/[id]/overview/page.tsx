@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import CampaignDetailTabs from "@/components/admin/CampaignDetailTabs";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedGrid, AnimatedCell } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Campaign Detail — Overview | FreeDrops Admin" };
 
 export default function CampaignOverviewPage({ params }: { params: { id: string } }) {
   return (
+    <AnimatedPage>
     <div className="max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
         <div className="space-y-1">
@@ -37,23 +40,23 @@ export default function CampaignOverviewPage({ params }: { params: { id: string 
 
       <CampaignDetailTabs id={params.id} active="overview" />
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <AnimatedGrid className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {[
           { label: "Bottles Scanned", value: "12,504", sub: "83.4% of 15,000", icon: "lucide:droplets", color: "text-[#D63839]", bg: "bg-red-50" },
           { label: "Total Clicks", value: "3,218", sub: "25.7% CTR", icon: "lucide:mouse-pointer-click", color: "text-blue-600", bg: "bg-blue-50" },
           { label: "Leads Captured", value: "452", sub: "14.0% lead rate", icon: "lucide:users", color: "text-emerald-600", bg: "bg-emerald-50" },
           { label: "Conversion Rate", value: "14.0%", sub: "+2.1% vs avg", icon: "lucide:trending-up", color: "text-purple-600", bg: "bg-purple-50" },
         ].map((s) => (
-          <div key={s.label} className="detail-card p-5 rounded-2xl">
+          <AnimatedCell key={s.label} className="detail-card p-5 rounded-2xl">
             <div className={`w-9 h-9 ${s.bg} rounded-xl flex items-center justify-center mb-3`}>
               <Icon icon={s.icon} className={`${s.color} text-lg`} />
             </div>
             <p className="text-2xl font-bold text-gray-900">{s.value}</p>
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{s.label}</p>
             <p className="text-xs text-gray-500 mt-1">{s.sub}</p>
-          </div>
+          </AnimatedCell>
         ))}
-      </div>
+      </AnimatedGrid>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white border border-gray-200 rounded-2xl p-6">
@@ -90,5 +93,6 @@ export default function CampaignOverviewPage({ params }: { params: { id: string 
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

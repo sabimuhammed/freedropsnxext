@@ -25,6 +25,7 @@ h1, h2, h3, h4, button {
 .sidebar-link { color: #6B7280; transition: all 0.2s; }
 .sidebar-link:hover { background-color: #F9FAFB; color: #111827; }
 .sidebar-link-active { background-color: #FEF2F2; color: #D63839; border-right: 3px solid #D63839; }
+.tab-active { border-bottom: 2px solid #D63839; color: #D63839; }
 
 .stat-card { background: #FFFFFF; border: 1px solid #F3F4F6; transition: all 0.2s ease; }
 .stat-card:hover { border-color: #E5E7EB; transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.04); }

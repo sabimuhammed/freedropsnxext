@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import CampaignDetailTabs from "@/components/admin/CampaignDetailTabs";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedTbody, AnimatedRow } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Campaign Detail — QR Links | FreeDrops Admin" };
 
@@ -13,6 +15,7 @@ const qrLinks = [
 
 export default function CampaignQRLinksPage({ params }: { params: { id: string } }) {
   return (
+    <AnimatedPage>
     <div className="max-w-6xl mx-auto">
       <div className="flex items-end justify-between mb-8">
         <div>
@@ -46,9 +49,9 @@ export default function CampaignQRLinksPage({ params }: { params: { id: string }
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50 text-sm">
+            <AnimatedTbody className="divide-y divide-gray-50 text-sm">
               {qrLinks.map((q) => (
-                <tr key={q.location} className="hover:bg-gray-50/50 transition-colors">
+                <AnimatedRow key={q.location} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-6 py-4 font-semibold text-gray-900">{q.location}</td>
                   <td className="px-6 py-4 text-gray-500">{q.zone}</td>
                   <td className="px-6 py-4">
@@ -73,12 +76,13 @@ export default function CampaignQRLinksPage({ params }: { params: { id: string }
                       <button className="text-gray-400 hover:text-gray-600 transition-colors"><Icon icon="lucide:more-horizontal" /></button>
                     </div>
                   </td>
-                </tr>
+                </AnimatedRow>
               ))}
-            </tbody>
+            </AnimatedTbody>
           </table>
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

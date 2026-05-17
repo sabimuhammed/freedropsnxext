@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedGrid, AnimatedCell } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Campaign Analytics | FreeDrops Sponsor Portal" };
 
 export default function SponsorCampaignAnalyticsPage({ params }: { params: { id: string } }) {
   return (
+    <AnimatedPage>
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -37,22 +40,22 @@ export default function SponsorCampaignAnalyticsPage({ params }: { params: { id:
         </nav>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <AnimatedGrid className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {[
           { label: "Bottles Scanned", value: "12,504", icon: "lucide:droplets", color: "text-[#B12B2C]", bg: "bg-red-50" },
           { label: "Total Clicks", value: "3,218", icon: "lucide:mouse-pointer-click", color: "text-blue-600", bg: "bg-blue-50" },
           { label: "Leads", value: "452", icon: "lucide:users", color: "text-emerald-600", bg: "bg-emerald-50" },
           { label: "Conversion", value: "14.0%", icon: "lucide:trending-up", color: "text-purple-600", bg: "bg-purple-50" },
         ].map((s) => (
-          <div key={s.label} className="bg-white border border-gray-200 rounded-2xl p-5">
+          <AnimatedCell key={s.label} className="bg-white border border-gray-200 rounded-2xl p-5">
             <div className={`w-9 h-9 ${s.bg} rounded-xl flex items-center justify-center mb-3`}>
               <Icon icon={s.icon} className={`${s.color} text-lg`} />
             </div>
             <p className="text-2xl font-bold text-gray-900">{s.value}</p>
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{s.label}</p>
-          </div>
+          </AnimatedCell>
         ))}
-      </div>
+      </AnimatedGrid>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white border border-gray-200 rounded-2xl p-6">
@@ -90,5 +93,6 @@ export default function SponsorCampaignAnalyticsPage({ params }: { params: { id:
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

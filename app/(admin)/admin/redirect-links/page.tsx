@@ -1,16 +1,19 @@
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedTbody, AnimatedRow } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Redirect Links — Global | FreeDrops Admin" };
 
 const links = [
-  { slug: "masafi-summer", destination: "https://masafi.com/summer", campaign: "Summer Splash", clicks: "3,218", created: "Jun 10, 2024", status: "Active" },
-  { slug: "mai-fitness", destination: "https://maidubai.com/fitness", campaign: "Fitness Village", clicks: "1,102", created: "Jul 01, 2024", status: "Active" },
-  { slug: "pepsi-school", destination: "https://pepsi.ae/school", campaign: "Back to School", clicks: "0", created: "Aug 15, 2024", status: "Draft" },
-  { slug: "alain-arts", destination: "https://alainwater.ae/arts", campaign: "Arts Festival", clicks: "5,602", created: "May 15, 2024", status: "Completed" },
+  { slug: "masafi-summer", destination: "https://masafi.com/summer", campaign: "Summer Splash", status: "Active", uniqueScans: "8,901", clicks: "3,218", created: "Jun 10, 2024" },
+  { slug: "mai-fitness", destination: "https://maidubai.com/fitness", campaign: "Fitness Village", status: "Active", uniqueScans: "6,110", clicks: "1,102", created: "Jul 01, 2024" },
+  { slug: "pepsi-school", destination: "https://pepsi.ae/school", campaign: "Back to School", status: "Draft", uniqueScans: "0", clicks: "0", created: "Aug 15, 2024" },
+  { slug: "alain-arts", destination: "https://alainwater.ae/arts", campaign: "Arts Festival", status: "Completed", uniqueScans: "15,302", clicks: "5,602", created: "May 15, 2024" },
 ];
 
 export default function RedirectLinksPage() {
   return (
+    <AnimatedPage>
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -31,14 +34,15 @@ export default function RedirectLinksPage() {
                 <th className="px-6 py-4 font-semibold">Destination URL</th>
                 <th className="px-6 py-4 font-semibold">Campaign</th>
                 <th className="px-6 py-4 font-semibold">Status</th>
+                <th className="px-6 py-4 font-semibold">Unique Scans</th>
                 <th className="px-6 py-4 font-semibold">Clicks</th>
                 <th className="px-6 py-4 font-semibold">Created</th>
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50 text-sm">
+            <AnimatedTbody className="divide-y divide-gray-50 text-sm">
               {links.map((l) => (
-                <tr key={l.slug} className="hover:bg-gray-50/50 transition-colors">
+                <AnimatedRow key={l.slug} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-6 py-4 font-mono font-semibold text-[#D63839]">/{l.slug}</td>
                   <td className="px-6 py-4 text-gray-500 text-xs max-w-xs truncate">{l.destination}</td>
                   <td className="px-6 py-4 text-gray-700 font-medium">{l.campaign}</td>
@@ -49,6 +53,7 @@ export default function RedirectLinksPage() {
                       "bg-blue-50 text-blue-700"
                     }`}>{l.status}</span>
                   </td>
+                  <td className="px-6 py-4 font-mono text-purple-700">{l.uniqueScans}</td>
                   <td className="px-6 py-4 font-medium text-gray-900">{l.clicks}</td>
                   <td className="px-6 py-4 text-gray-500">{l.created}</td>
                   <td className="px-6 py-4 text-right">
@@ -58,12 +63,13 @@ export default function RedirectLinksPage() {
                       <button className="text-gray-400 hover:text-red-500"><Icon icon="lucide:trash-2" /></button>
                     </div>
                   </td>
-                </tr>
+                </AnimatedRow>
               ))}
-            </tbody>
+            </AnimatedTbody>
           </table>
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }

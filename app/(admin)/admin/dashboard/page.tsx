@@ -1,26 +1,76 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedGrid, AnimatedCell, AnimatedTbody, AnimatedRow } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "Admin Dashboard | FreeDrops" };
 
 const stats = [
-  { label: "Active Campaigns", value: "42", sub: "+3 this week", icon: "lucide:megaphone", color: "text-[#D63839]", bg: "bg-red-50" },
-  { label: "Total Sponsors", value: "18", sub: "+1 this month", icon: "lucide:building-2", color: "text-blue-600", bg: "bg-blue-50" },
-  { label: "Bottles Scanned", value: "184.2k", sub: "This month", icon: "lucide:droplets", color: "text-emerald-600", bg: "bg-emerald-50" },
-  { label: "Conversion Rate", value: "12.4%", sub: "+0.8% vs last month", icon: "lucide:trending-up", color: "text-purple-600", bg: "bg-purple-50" },
-  { label: "Total Leads", value: "22,418", sub: "All time", icon: "lucide:users", color: "text-amber-600", bg: "bg-amber-50" },
-  { label: "Active QR Codes", value: "1,204", sub: "Across all campaigns", icon: "lucide:qr-code", color: "text-slate-600", bg: "bg-slate-50" },
+  {
+    label: "Bottles Scanned (49.8%)",
+    value: "12,450",
+    suffix: "/ 25,000",
+    icon: "lucide:package-check",
+    color: "text-[#D63839]",
+    bg: "bg-red-50",
+  },
+  {
+    label: "Total Scans",
+    value: "142,890",
+    icon: "lucide:scan",
+    color: "text-[#D63839]",
+    bg: "bg-red-50",
+  },
+  {
+    label: "Total CTA Clicks",
+    value: "12,402",
+    icon: "lucide:mouse-pointer-2",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+  },
+  {
+    label: "Total Leads",
+    value: "842",
+    sub: "FreeDrops Forms only",
+    icon: "lucide:user-check",
+    color: "text-amber-600",
+    bg: "bg-amber-50",
+  },
+  {
+    label: "Active Campaigns",
+    value: "48",
+    sub: "8 pending approval",
+    icon: "lucide:trending-up",
+    color: "text-purple-600",
+    bg: "bg-purple-50",
+  },
 ];
 
-const recentCampaigns = [
-  { name: "Summer Splash", sponsor: "Masafi Water", status: "Live", scans: "12,504", bottles: "15,000", statusColor: "bg-green-50 text-green-700" },
-  { name: "Fitness Village", sponsor: "Mai Dubai", status: "In Review", scans: "8,240", bottles: "10,000", statusColor: "bg-amber-50 text-amber-700" },
-  { name: "Back to School", sponsor: "PepsiCo", status: "Awaiting Creative", scans: "0", bottles: "20,000", statusColor: "bg-purple-50 text-purple-700" },
-  { name: "Arts Festival", sponsor: "Masafi Water", status: "Completed", scans: "22,418", bottles: "25,000", statusColor: "bg-gray-100 text-gray-700" },
+const topCampaigns = [
+  { initials: "AQ", avatarBg: "bg-red-100", avatarColor: "text-red-600", name: "AquaPure Summer Rush", sponsor: "Masafi Water", bottles: "5,000", scans: "14,203", uniqueScans: "9,841", clicks: "1,402", leads: "—" },
+  { initials: "EG", avatarBg: "bg-amber-100", avatarColor: "text-amber-600", name: "Etisalat 5G Launch", sponsor: "Etisalat UAE", bottles: "3,500", scans: "9,102", uniqueScans: "6,730", clicks: "840", leads: "112" },
+  { initials: "DL", avatarBg: "bg-emerald-100", avatarColor: "text-emerald-600", name: "Dubai Logistics Exp", sponsor: "DP World", bottles: "8,200", scans: "7,845", uniqueScans: "5,210", clicks: "630", leads: "—" },
+  { initials: "EM", avatarBg: "bg-purple-100", avatarColor: "text-purple-600", name: "Emirates Skywards", sponsor: "Emirates", bottles: "12,000", scans: "6,102", uniqueScans: "4,488", clicks: "480", leads: "54" },
+  { initials: "ST", avatarBg: "bg-gray-100", avatarColor: "text-gray-600", name: "Starter Pilot V1", sponsor: "FreeDrops Lab", bottles: "2,000", scans: "4,102", uniqueScans: "3,201", clicks: "210", leads: "18" },
+];
+
+const topLocations = [
+  { icon: "lucide:building", name: "Dubai Mall - P3 Entrance", scans: "42,109" },
+  { icon: "lucide:plane", name: "DXB Terminal 3 - B22", scans: "38,402" },
+  { icon: "lucide:map-pin", name: "JBR Walk - Station 4", scans: "29,551" },
+  { icon: "lucide:shopping-cart", name: "Emirates Mall - Food Court", scans: "22,102" },
+];
+
+const campaignStatus = [
+  { label: "Live", count: 45, pct: "45.0%", color: "bg-[#D63839]" },
+  { label: "Completed", count: 25, pct: "25.0%", color: "bg-emerald-500" },
+  { label: "Review", count: 20, pct: "20.0%", color: "bg-amber-500" },
+  { label: "Draft", count: 10, pct: "10.0%", color: "bg-red-400" },
 ];
 
 export default function AdminDashboardPage() {
   return (
+    <AnimatedPage>
     <div>
       <header className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
         <div>
@@ -28,7 +78,7 @@ export default function AdminDashboardPage() {
           <p className="text-sm text-gray-500">Welcome back, Ahmed. Here's what's happening across the network.</p>
         </div>
         <div className="flex items-center gap-3">
-          <div className="relative">
+          <div className="relative min-w-[300px]">
             <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
               <Icon icon="lucide:search" />
             </span>
@@ -45,68 +95,150 @@ export default function AdminDashboardPage() {
           </div>
           <Link
             href="/admin/campaigns/create/step-1"
-            className="flex items-center gap-2 bg-[#D63839] hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm shadow-red-200"
+            className="flex items-center gap-2 bg-[#D63839] hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm shadow-red-200 whitespace-nowrap"
           >
             <Icon icon="lucide:plus" />Create Campaign
+          </Link>
+          <Link
+            href="/admin/login"
+            className="flex items-center gap-2 text-[#D63839] hover:bg-red-50 px-4 py-2 rounded-lg text-sm font-semibold transition-all"
+          >
+            <Icon icon="lucide:log-out" />
+            <span>Logout</span>
           </Link>
         </div>
       </header>
 
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+      <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
         {stats.map((s) => (
-          <div key={s.label} className="stat-card p-5 rounded-2xl">
-            <div className="flex items-start justify-between mb-4">
-              <div className={`w-10 h-10 ${s.bg} rounded-xl flex items-center justify-center`}>
-                <Icon icon={s.icon} className={`${s.color} text-xl`} />
+          <AnimatedCell key={s.label} className="stat-card p-5 rounded-2xl">
+            <div className="flex items-center justify-between mb-4">
+              <div className={`p-2 ${s.bg} ${s.color} rounded-lg`}>
+                <Icon icon={s.icon} className="text-xl" />
               </div>
             </div>
-            <p className="text-2xl font-bold text-gray-900 mb-1">{s.value}</p>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{s.label}</p>
-            <p className="text-xs text-gray-500 mt-1">{s.sub}</p>
-          </div>
+            <p className="text-sm text-gray-500 font-medium">{s.label}</p>
+            <h3 className="text-2xl font-bold text-gray-900 mt-1">
+              {s.value}{" "}
+              {s.suffix && <span className="text-sm text-gray-400 font-medium">{s.suffix}</span>}
+            </h3>
+            {s.sub && (
+              <p className="text-[10px] text-gray-400 mt-2 uppercase tracking-wide">{s.sub}</p>
+            )}
+          </AnimatedCell>
         ))}
-      </div>
+      </AnimatedGrid>
 
-      <div className="bg-white border border-gray-100 rounded-2xl shadow-sm">
-        <div className="p-6 border-b border-gray-50 flex items-center justify-between">
-          <h2 className="font-bold text-gray-900">Recent Campaigns</h2>
-          <Link href="/admin/campaigns" className="text-xs font-bold text-[#D63839] hover:underline">View All</Link>
+      <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm mb-8">
+        <div className="p-6 flex items-center justify-between border-b border-gray-50">
+          <h3 className="font-bold text-gray-900">Top Campaigns</h3>
+          <Link href="/admin/campaigns" className="text-xs font-semibold text-[#D63839] hover:text-red-800">
+            View All Campaigns
+          </Link>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
-            <thead className="bg-gray-50/50">
+            <thead className="bg-gray-50">
               <tr className="table-header">
-                <th className="px-6 py-4 font-semibold">Campaign</th>
-                <th className="px-6 py-4 font-semibold">Sponsor</th>
-                <th className="px-6 py-4 font-semibold">Status</th>
-                <th className="px-6 py-4 font-semibold text-center">Total Bottles</th>
-                <th className="px-6 py-4 font-semibold">Scans</th>
-                <th className="px-6 py-4 font-semibold text-right">Actions</th>
+                <th className="px-6 py-4">Campaign</th>
+                <th className="px-6 py-4">Sponsor</th>
+                <th className="px-6 py-4">Total Bottles</th>
+                <th className="px-6 py-4">Scans</th>
+                <th className="px-6 py-4">Unique Scans</th>
+                <th className="px-6 py-4">Clicks</th>
+                <th className="px-6 py-4">Leads</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50 text-sm">
-              {recentCampaigns.map((c) => (
-                <tr key={c.name} className="hover:bg-gray-50/50 transition-colors">
-                  <td className="px-6 py-4 font-bold text-gray-900">{c.name}</td>
-                  <td className="px-6 py-4 text-gray-600">{c.sponsor}</td>
+            <AnimatedTbody className="divide-y divide-gray-50">
+              {topCampaigns.map((c) => (
+                <AnimatedRow key={c.name} className="text-sm text-gray-700">
                   <td className="px-6 py-4">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${c.statusColor}`}>
-                      {c.status}
-                    </span>
+                    <div className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded ${c.avatarBg} flex items-center justify-center ${c.avatarColor} font-bold text-xs shrink-0`}>
+                        {c.initials}
+                      </div>
+                      <span className="font-medium whitespace-nowrap">{c.name}</span>
+                    </div>
                   </td>
-                  <td className="px-6 py-4 text-center font-mono font-bold text-gray-900">{c.bottles}</td>
-                  <td className="px-6 py-4 font-medium text-gray-900">{c.scans}</td>
-                  <td className="px-6 py-4 text-right">
-                    <Link href="/admin/campaigns/1/overview" className="text-xs font-bold text-[#D63839] hover:text-red-800 uppercase tracking-wide">
-                      View →
-                    </Link>
-                  </td>
-                </tr>
+                  <td className="px-6 py-4 whitespace-nowrap">{c.sponsor}</td>
+                  <td className="px-6 py-4 font-mono font-bold text-gray-900">{c.bottles}</td>
+                  <td className="px-6 py-4 font-mono">{c.scans}</td>
+                  <td className="px-6 py-4 font-mono text-purple-700">{c.uniqueScans}</td>
+                  <td className="px-6 py-4 font-mono">{c.clicks}</td>
+                  <td className={`px-6 py-4 font-mono ${c.leads === "—" ? "text-gray-400" : ""}`}>{c.leads}</td>
+                </AnimatedRow>
               ))}
-            </tbody>
+            </AnimatedTbody>
           </table>
         </div>
       </div>
+
+      <div className="flex gap-6 flex-row-reverse">
+        <div className="flex-1 bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+          <div className="p-6 flex items-center justify-between border-b border-gray-50">
+            <h3 className="font-bold text-gray-900">Top Locations</h3>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead className="bg-gray-50">
+                <tr className="table-header">
+                  <th className="px-6 py-4">Location Tag</th>
+                  <th className="px-6 py-4">Total Scans</th>
+                </tr>
+              </thead>
+              <AnimatedTbody className="divide-y divide-gray-50">
+                {topLocations.map((l) => (
+                  <AnimatedRow key={l.name} className="text-sm text-gray-700">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-2">
+                        <Icon icon={l.icon} className="text-gray-400" />
+                        {l.name}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 font-mono">{l.scans}</td>
+                  </AnimatedRow>
+                ))}
+              </AnimatedTbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="shrink-0 w-64 bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+          <h3 className="font-bold text-gray-900 mb-4">Campaign Status</h3>
+          <div className="relative flex justify-center py-3">
+            <svg viewBox="0 0 100 100" className="w-36 h-36 drop-shadow-sm">
+              <defs>
+                <mask id="pie-mask">
+                  <rect width="100" height="100" fill="white" />
+                  <circle cx="50" cy="50" r="32" fill="black" />
+                </mask>
+              </defs>
+              <g mask="url(#pie-mask)">
+                <path fill="#D63839" d="M 50 50 L 50 0 A 50 50 0 0 1 97.55 65.45 Z" />
+                <path fill="#10B981" d="M 50 50 L 97.55 65.45 A 50 50 0 0 1 2.45 65.45 Z" />
+                <path fill="#F59E0B" d="M 50 50 L 2.45 65.45 A 50 50 0 0 1 20.61 9.55 Z" />
+                <path fill="#EF4444" d="M 50 50 L 20.61 9.55 A 50 50 0 0 1 50 0 Z" />
+              </g>
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <span className="text-xl font-bold text-gray-900">100+</span>
+              <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Total</span>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3 mt-4">
+            {campaignStatus.map((s) => (
+              <div key={s.label} className="flex items-center gap-1.5">
+                <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${s.color}`} />
+                <div className="flex flex-col">
+                  <span className="text-xs font-semibold text-gray-900 leading-tight">{s.label} ({s.count})</span>
+                  <span className="text-[10px] text-gray-500">{s.pct}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
+    </AnimatedPage>
   );
 }

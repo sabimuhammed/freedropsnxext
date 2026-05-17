@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import AnimatedPage from "@/components/shared/AnimatedPage";
+import { AnimatedGrid, AnimatedCell, AnimatedTbody, AnimatedRow } from "@/components/shared/AnimatedGrid";
 
 export const metadata = { title: "QR Links — Global | FreeDrops Admin" };
 
@@ -12,6 +14,7 @@ const qrLinks = [
 
 export default function QRLinksGlobalPage() {
   return (
+    <AnimatedPage>
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -30,19 +33,19 @@ export default function QRLinksGlobalPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <AnimatedGrid className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {[
           { label: "Total QR Codes", value: "1,204", color: "text-gray-900" },
           { label: "Active", value: "986", color: "text-green-600" },
           { label: "Total Scans", value: "184.2k", color: "text-gray-900" },
           { label: "Avg. Scan Rate", value: "15.3%", color: "text-[#D63839]" },
         ].map((s) => (
-          <div key={s.label} className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+          <AnimatedCell key={s.label} className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">{s.label}</p>
             <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
-          </div>
+          </AnimatedCell>
         ))}
-      </div>
+      </AnimatedGrid>
 
       <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
         <div className="p-4 border-b border-gray-100 flex gap-4">
@@ -68,12 +71,13 @@ export default function QRLinksGlobalPage() {
                 <th className="px-6 py-4 font-semibold text-center">Bottles</th>
                 <th className="px-6 py-4 font-semibold">Scans</th>
                 <th className="px-6 py-4 font-semibold">Progress</th>
+                <th className="px-6 py-4 font-semibold">QR Code</th>
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50 text-sm">
+            <AnimatedTbody className="divide-y divide-gray-50 text-sm">
               {qrLinks.map((q) => (
-                <tr key={`${q.campaign}-${q.location}`} className="hover:bg-gray-50/50 transition-colors">
+                <AnimatedRow key={`${q.campaign}-${q.location}`} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-6 py-4 font-semibold text-gray-900">{q.campaign}</td>
                   <td className="px-6 py-4 text-gray-600">{q.sponsor}</td>
                   <td className="px-6 py-4 text-gray-600">{q.location}</td>
@@ -94,18 +98,19 @@ export default function QRLinksGlobalPage() {
                       <span className="text-xs text-gray-500 w-8">{q.pct}%</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <button className="text-gray-400 hover:text-[#D63839]"><Icon icon="lucide:download" /></button>
-                      <button className="text-gray-400 hover:text-[#D63839]"><Icon icon="lucide:copy" /></button>
-                    </div>
+                  <td className="px-6 py-4">
+                    <img src="/qr8.png" alt="QR Code" className="w-12 h-12 rounded" />
                   </td>
-                </tr>
+                  <td className="px-6 py-4 text-right">
+                    <button className="text-gray-400 hover:text-[#D63839]"><Icon icon="lucide:download" /></button>
+                  </td>
+                </AnimatedRow>
               ))}
-            </tbody>
+            </AnimatedTbody>
           </table>
         </div>
       </div>
     </div>
+    </AnimatedPage>
   );
 }
