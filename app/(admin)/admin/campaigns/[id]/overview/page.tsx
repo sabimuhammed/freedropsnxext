@@ -53,44 +53,28 @@ export default function CampaignOverviewPage({ params }: { params: { id: string 
             </div>
             <p className="text-2xl font-bold text-gray-900">{s.value}</p>
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{s.label}</p>
-            <p className="text-xs text-gray-500 mt-1">{s.sub}</p>
+            {/* <p className="text-xs text-gray-500 mt-1">{s.sub}</p> */}
           </AnimatedCell>
         ))}
       </AnimatedGrid>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white border border-gray-200 rounded-2xl p-6">
-          <h3 className="font-bold text-gray-900 mb-4">Campaign Details</h3>
-          <dl className="space-y-3 text-sm">
-            {[
-              { label: "Sponsor", value: "Al Ain Water" },
-              { label: "Start Date", value: "Jun 12, 2024" },
-              { label: "End Date", value: "Aug 31, 2024" },
-              { label: "CTA Type", value: "External URL" },
-              { label: "Total Bottles", value: "15,000" },
-              { label: "Locations", value: "12 (Dubai)" },
-            ].map((r) => (
-              <div key={r.label} className="flex justify-between py-2 border-b border-gray-50 last:border-0">
-                <dt className="text-gray-500">{r.label}</dt>
-                <dd className="font-semibold text-gray-900">{r.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-
-        <div className="bg-white border border-gray-200 rounded-2xl p-6">
-          <h3 className="font-bold text-gray-900 mb-4">Scan Activity (Last 7 Days)</h3>
-          <div className="flex items-end gap-2 h-32">
-            {[40, 65, 80, 55, 90, 75, 95].map((h, i) => (
-              <div key={i} className="flex-1 flex flex-col items-center gap-1">
-                <div className="w-full bg-red-100 rounded-t-md" style={{ height: `${h}%` }}>
-                  <div className="w-full bg-[#D63839] rounded-t-md h-full opacity-80" />
-                </div>
-                <span className="text-[10px] text-gray-400">{["M","T","W","T","F","S","S"][i]}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div className="bg-white border border-gray-200 rounded-2xl p-6">
+        <h3 className="font-bold text-gray-900 mb-4">Campaign Details</h3>
+        <dl className="space-y-3 text-sm">
+          {[
+            { label: "Sponsor", value: "Al Ain Water" },
+            { label: "Start Date", value: "Jun 12, 2024" },
+            { label: "End Date", value: "Aug 31, 2024" },
+            { label: "CTA Type", value: "External URL" },
+            { label: "Total Bottles", value: "15,000" },
+            { label: "Locations", value: "12 (Dubai)" },
+          ].map((r) => (
+            <div key={r.label} className="flex justify-between py-2 border-b border-gray-50 last:border-0">
+              <dt className="text-gray-500">{r.label}</dt>
+              <dd className="font-semibold text-gray-900">{r.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </div>
     </AnimatedPage>

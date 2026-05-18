@@ -54,11 +54,69 @@ export default function SponsorCreateStep2Page() {
             </div>
           )}
           {selected === "whatsapp" && (
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">WhatsApp Number</label>
-              <div className="flex">
-                <span className="inline-flex items-center px-4 rounded-l-2xl border border-r-0 border-gray-200 bg-gray-50 text-gray-500 text-sm">+971</span>
-                <input type="tel" placeholder="50 123 4567" className="flex-1 px-4 py-4 rounded-r-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] outline-none text-sm" />
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">WhatsApp Number</label>
+                <div className="flex">
+                  <span className="inline-flex items-center px-4 rounded-l-2xl border border-r-0 border-gray-200 bg-gray-50 text-gray-500 text-sm">+971</span>
+                  <input type="tel" placeholder="50 123 4567" className="flex-1 px-4 py-4 rounded-r-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] outline-none text-sm" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">Landing Banner</label>
+                <div className="border-2 border-dashed border-gray-200 rounded-2xl p-8 flex flex-col items-center gap-3 bg-gray-50/50 hover:bg-gray-50 transition-colors cursor-pointer">
+                  <Icon icon="lucide:upload-cloud" className="text-3xl text-gray-400" />
+                  <div className="text-center">
+                    <p className="text-sm font-semibold text-gray-700">Click to upload banner</p>
+                    <p className="text-xs text-gray-400">PNG, JPG (Recommended 1200x600px)</p>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">Offer Title</label>
+                <input type="text" placeholder="Get 20% Off Your Next Masafi Order" className="w-full px-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] outline-none text-sm" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">Offer Description</label>
+                <textarea rows={4} placeholder="Scan and sign up to receive a unique discount code instantly!" className="w-full px-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] outline-none text-sm resize-none" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">About Us</label>
+                <textarea rows={4} placeholder="Scan and sign up to receive a unique discount code instantly!" className="w-full px-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] outline-none text-sm resize-none" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">Contact</label>
+                <textarea rows={4} placeholder="Scan and sign up to receive a unique discount code instantly!" className="w-full px-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] outline-none text-sm resize-none" />
+              </div>
+            </div>
+          )}
+          {selected === "landing" && (
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">Landing Banner</label>
+                <div className="border-2 border-dashed border-gray-200 rounded-2xl p-8 flex flex-col items-center gap-3 bg-gray-50/50 hover:bg-gray-50 transition-colors cursor-pointer">
+                  <Icon icon="lucide:upload-cloud" className="text-3xl text-gray-400" />
+                  <div className="text-center">
+                    <p className="text-sm font-semibold text-gray-700">Click to upload banner</p>
+                    <p className="text-xs text-gray-400">PNG, JPG (Recommended 1200x600px)</p>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">Offer Title</label>
+                <input type="text" placeholder="Get 20% Off Your Next Masafi Order" className="w-full px-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] outline-none text-sm" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">Offer Description</label>
+                <textarea rows={4} placeholder="Scan and sign up to receive a unique discount code instantly!" className="w-full px-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] outline-none text-sm resize-none" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">About Us</label>
+                <textarea rows={4} placeholder="Scan and sign up to receive a unique discount code instantly!" className="w-full px-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] outline-none text-sm resize-none" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">Contact</label>
+                <textarea rows={4} placeholder="Scan and sign up to receive a unique discount code instantly!" className="w-full px-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-[#B12B2C] outline-none text-sm resize-none" />
               </div>
             </div>
           )}
