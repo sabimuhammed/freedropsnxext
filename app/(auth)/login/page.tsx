@@ -1,10 +1,24 @@
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import AnimatedPage from "@/components/shared/AnimatedPage";
 
-export const metadata = { title: "Sponsor Login | FreeDrops" };
+export default function LoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-export default function SponsorLoginPage() {
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (email === "admin@gmail.com") {
+      router.push("/admin/dashboard");
+    } else if (email === "sponsor@gmail.com") {
+      router.push("/sponsor/dashboard");
+    }
+  }
+
   return (
     <AnimatedPage>
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
@@ -19,11 +33,11 @@ export default function SponsorLoginPage() {
               />
             </div>
             <div className="mb-8 text-center">
-              <h1 className="text-3xl font-bold text-slate-900 mb-2">Sponsor Login</h1>
+              <h1 className="text-3xl font-bold text-slate-900 mb-2">Login</h1>
               <p className="text-slate-500">Login to manage your hydration campaigns</p>
             </div>
 
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-semibold text-slate-700 ml-1">Email Address</label>
                 <div className="relative">
@@ -33,7 +47,8 @@ export default function SponsorLoginPage() {
                   <input
                     type="email"
                     id="email"
-                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@company.com"
                     className="block w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#B12B2C] focus:border-transparent transition-all"
                     required
@@ -55,7 +70,8 @@ export default function SponsorLoginPage() {
                   <input
                     type="password"
                     id="password"
-                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
                     className="block w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#B12B2C] focus:border-transparent transition-all"
                     required
@@ -72,12 +88,18 @@ export default function SponsorLoginPage() {
                 <label htmlFor="remember" className="text-sm text-slate-500">Remember me for 30 days</label>
               </div>
 
-              <Link
-                href="/sponsor/dashboard"
+              {/* Hint */}
+              <div className="text-xs text-slate-400 bg-slate-50 rounded-xl px-4 py-3 border border-slate-100 space-y-1">
+                <p><span className="font-semibold text-slate-500">Admin:</span> <span className="font-mono">admin@gmail.com</span></p>
+                <p><span className="font-semibold text-slate-500">Sponsor:</span> <span className="font-mono">sponsor@gmail.com</span></p>
+              </div>
+
+              <button
+                type="submit"
                 className="w-full py-4 px-6 bg-[#B12B2C] text-white font-bold rounded-xl shadow-lg shadow-red-100 hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
               >
                 Log In <Icon icon="lucide:arrow-right" />
-              </Link>
+              </button>
             </form>
 
             <div className="mt-8 text-center">

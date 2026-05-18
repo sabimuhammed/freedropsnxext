@@ -97,50 +97,62 @@ export default function CreateCampaignStep2Page() {
                   <textarea rows={3} placeholder="Hi! I'm interested in the Summer Promo..." className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] outline-none text-sm resize-none" />
                 </div>
               </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Landing Banner</label>
+                <div className="border-2 border-dashed border-gray-200 rounded-2xl p-8 flex flex-col items-center gap-3 bg-gray-50/50 hover:bg-gray-50 transition-colors cursor-pointer">
+                  <Icon icon="lucide:upload-cloud" className="text-3xl text-gray-400" />
+                  <div className="text-center">
+                    <p className="text-sm font-semibold text-gray-700">Click to upload banner</p>
+                    <p className="text-xs text-gray-400">PNG, JPG (Recommended 1200x600px)</p>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Offer Title</label>
+                <input type="text" placeholder="Get 20% Off Your Next Masafi Order" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] outline-none text-sm" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Offer Description</label>
+                <textarea rows={4} placeholder="Scan and sign up to receive a unique discount code instantly!" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] outline-none text-sm resize-none" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">About Us</label>
+                <textarea rows={4} placeholder="Scan and sign up to receive a unique discount code instantly!" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] outline-none text-sm resize-none" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Contact</label>
+                <textarea rows={4} placeholder="Scan and sign up to receive a unique discount code instantly!" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] outline-none text-sm resize-none" />
+              </div>
             </div>
           )}
 
           {selected === "landing" && (
-            <div className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Landing Banner</label>
-                    <div className="border-2 border-dashed border-gray-200 rounded-2xl p-8 flex flex-col items-center gap-3 bg-gray-50/50 hover:bg-gray-50 transition-colors cursor-pointer">
-                      <Icon icon="lucide:upload-cloud" className="text-3xl text-gray-400" />
-                      <div className="text-center">
-                        <p className="text-sm font-semibold text-gray-700">Click to upload banner</p>
-                        <p className="text-xs text-gray-400">PNG, JPG (Recommended 1200x600px)</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Offer Title</label>
-                    <input type="text" placeholder="Get 20% Off Your Next Masafi Order" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] outline-none text-sm" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Offer Description</label>
-                    <textarea rows={4} placeholder="Scan and sign up to receive a unique discount code instantly!" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] outline-none text-sm resize-none" />
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Landing Banner</label>
+                <div className="border-2 border-dashed border-gray-200 rounded-2xl p-8 flex flex-col items-center gap-3 bg-gray-50/50 hover:bg-gray-50 transition-colors cursor-pointer">
+                  <Icon icon="lucide:upload-cloud" className="text-3xl text-gray-400" />
+                  <div className="text-center">
+                    <p className="text-sm font-semibold text-gray-700">Click to upload banner</p>
+                    <p className="text-xs text-gray-400">PNG, JPG (Recommended 1200x600px)</p>
                   </div>
                 </div>
-                <div className="space-y-6">
-                  <div className="p-6 bg-red-50/50 rounded-2xl border border-red-100">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <Icon icon="lucide:user-plus" className="text-[#D63839]" />
-                        <span className="text-sm font-bold text-gray-900">Lead Capture Form</span>
-                      </div>
-                      <div className="w-11 h-6 bg-[#D63839] rounded-full relative cursor-pointer">
-                        <div className="absolute right-1 top-1 w-4 h-4 bg-white rounded-full" />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Recipient Email</label>
-                      <input type="text" placeholder="marketing@masafi.com" className="w-full px-4 py-2.5 rounded-lg border border-red-200 focus:ring-2 focus:ring-[#D63839] outline-none text-sm bg-white" />
-                    </div>
-                    <p className="text-[11px] text-red-500 leading-relaxed mt-3">When enabled, users must provide their name/phone to view the offer.</p>
-                  </div>
-                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Offer Title</label>
+                <input type="text" placeholder="Get 20% Off Your Next Masafi Order" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] outline-none text-sm" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Offer Description</label>
+                <textarea rows={4} placeholder="Scan and sign up to receive a unique discount code instantly!" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] outline-none text-sm resize-none" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">About Us</label>
+                <textarea rows={4} placeholder="Scan and sign up to receive a unique discount code instantly!" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] outline-none text-sm resize-none" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Contact</label>
+                <textarea rows={4} placeholder="Scan and sign up to receive a unique discount code instantly!" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] outline-none text-sm resize-none" />
               </div>
             </div>
           )}

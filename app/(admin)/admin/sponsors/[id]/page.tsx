@@ -169,7 +169,7 @@ export default function SponsorProfilePage() {
                 <div className="p-4 hover:bg-gray-50 transition-colors flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-lg bg-red-50 border border-red-100 flex items-center justify-center overflow-hidden">
-                      <img src="https://images.unsplash.com/photo-1548919973-5dea58b88ad6?auto=format&fit=crop&q=80&w=100&h=100" className="w-full h-full object-cover" alt="Dubai Mall Summer Splash" />
+                      <img src="/dubai-mall.png" className="w-full h-full object-cover" alt="Dubai Mall Summer Splash" />
                     </div>
                     <div>
                       <h4 className="text-sm font-bold text-gray-900">Dubai Mall Summer Splash</h4>

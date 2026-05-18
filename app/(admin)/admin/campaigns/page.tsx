@@ -88,7 +88,6 @@ export default function CampaignsPage() {
                 <th className="px-6 py-4">Sponsor</th>
                 <th className="px-6 py-4">Status</th>
                 <th className="px-6 py-4">Unique Scans</th>
-                <th className="px-6 py-4">CTA Type</th>
                 <th className="px-6 py-4">Start Date</th>
                 <th className="px-6 py-4 text-center">Total Bottles</th>
                 <th className="px-6 py-4">Scans</th>
@@ -106,7 +105,6 @@ export default function CampaignsPage() {
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${c.statusColor}`}>{c.status}</span>
                   </td>
                   <td className="px-6 py-4 font-mono text-purple-700">{c.uniqueScans}</td>
-                  <td className="px-6 py-4 text-gray-500">{c.cta}</td>
                   <td className="px-6 py-4 text-gray-600">{c.start}</td>
                   <td className="px-6 py-4 text-center font-mono font-bold text-gray-900">{c.bottles}</td>
                   <td className="px-6 py-4 font-medium text-gray-900">{c.scans}</td>

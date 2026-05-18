@@ -1,19 +1,21 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import CampaignCreateSteps from "@/components/admin/CampaignCreateSteps";
 
-export const metadata = { title: "Create Campaign - Step 4: Locations & Tags | FreeDrops Admin" };
-
-const locations = [
-  { name: "The Dubai Mall", area: "Downtown Dubai", checked: true },
-  { name: "Mall of the Emirates", area: "Al Barsha", checked: true },
-  { name: "Dubai Festival City", area: "Festival City", checked: false },
-  { name: "Ibn Battuta Mall", area: "Jebel Ali", checked: false },
-  { name: "Mercato Mall", area: "Jumeirah", checked: false },
-  { name: "City Centre Deira", area: "Deira", checked: false },
+const allLocations = [
+  { name: "The Dubai Mall", area: "Downtown Dubai" },
+  { name: "Mall of the Emirates", area: "Al Barsha" },
+  { name: "Dubai Festival City", area: "Festival City" },
+  { name: "Ibn Battuta Mall", area: "Jebel Ali" },
+  { name: "Mercato Mall", area: "Jumeirah" },
+  { name: "City Centre Deira", area: "Deira" },
 ];
 
 export default function CreateCampaignStep4Page() {
+  const [selected, setSelected] = useState<string>("The Dubai Mall");
+
   return (
     <div className="max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-8">
@@ -88,15 +90,18 @@ export default function CreateCampaignStep4Page() {
                 <input type="text" placeholder="Search locations in Dubai..." className="w-full pl-11 pr-4 py-3 outline-none text-sm" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-72 overflow-y-auto">
-                {locations.map((l) => (
-                  <label key={l.name} className={`border-2 rounded-xl p-4 flex items-center gap-3 cursor-pointer transition-all ${l.checked ? "border-[#D63839] bg-red-50/50" : "border-slate-100 bg-slate-50/50 hover:border-[#D63839]"}`}>
-                    <input type="checkbox" defaultChecked={l.checked} className="w-5 h-5 rounded text-[#D63839] accent-[#D63839]" />
-                    <div>
-                      <p className="text-sm font-bold text-gray-900">{l.name}</p>
-                      <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold mt-0.5">{l.area}</p>
-                    </div>
-                  </label>
-                ))}
+                {allLocations.map((l) => {
+                  const isChecked = selected === l.name;
+                  return (
+                    <label key={l.name} onClick={() => setSelected(l.name)} className={`border-2 rounded-xl p-4 flex items-center gap-3 cursor-pointer transition-all ${isChecked ? "border-[#D63839] bg-red-50/50" : "border-slate-100 bg-slate-50/50 hover:border-[#D63839]"}`}>
+                      <input type="radio" checked={isChecked} onChange={() => setSelected(l.name)} className="w-5 h-5 text-[#D63839] accent-[#D63839]" />
+                      <div>
+                        <p className="text-sm font-bold text-gray-900">{l.name}</p>
+                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold mt-0.5">{l.area}</p>
+                      </div>
+                    </label>
+                  );
+                })}
               </div>
             </div>
           </div>
