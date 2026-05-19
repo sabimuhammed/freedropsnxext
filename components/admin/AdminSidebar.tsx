@@ -9,11 +9,16 @@ const navItems = [
   { id: "campaigns", href: "/admin/campaigns", icon: "lucide:megaphone", label: "Campaigns" },
   { id: "sponsors", href: "/admin/sponsors", icon: "lucide:building-2", label: "Sponsors" },
   { id: "locations", href: "/admin/locations", icon: "lucide:map-pin", label: "Locations" },
-  { id: "qr", href: "/admin/qr-links", icon: "lucide:qr-code", label: "QR Codes" },
+];
+
+const userInquiryItems = [
+  { id: "find-freedrops", href: "/admin/find-freedrops", icon: "lucide:search", label: "Find FreeDrops" },
+  { id: "contact-submissions", href: "/admin/contact-submissions", icon: "lucide:inbox", label: "Contact Submissions" },
+  { id: "get-a-quote", href: "/admin/get-a-quote", icon: "lucide:file-text", label: "Get a Quote Data" },
 ];
 
 const reportingItems = [
-  { id: "analytics", href: "/admin/redirect-links", icon: "lucide:bar-chart-3", label: "Analytics" },
+  { id: "analytics", href: "/admin/analytics", icon: "lucide:bar-chart-3", label: "Analytics" },
 ];
 
 export default function AdminSidebar() {
@@ -32,6 +37,32 @@ export default function AdminSidebar() {
 
       <nav className="mt-4 flex-1 space-y-1 px-3">
         {navItems.map((item) => {
+          const active = isActive(item.href);
+          return (
+            <motion.div key={item.id} whileTap={{ scale: 0.97 }} className="relative">
+              {active && (
+                <motion.span
+                  layoutId="admin-nav-indicator"
+                  className="absolute inset-0 bg-red-50 rounded-lg border-r-2 border-[#D63839]"
+                  transition={{ type: "spring", stiffness: 380, damping: 34 }}
+                />
+              )}
+              <Link
+                href={item.href}
+                className={`relative flex items-center px-4 py-3 text-sm font-medium rounded-lg sidebar-link ${active ? "text-[#D63839]" : ""}`}
+              >
+                <Icon icon={item.icon} className="mr-3 text-lg" />
+                {item.label}
+              </Link>
+            </motion.div>
+          );
+        })}
+
+        <div className="pt-4 pb-2 px-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+          User Inquiries
+        </div>
+
+        {userInquiryItems.map((item) => {
           const active = isActive(item.href);
           return (
             <motion.div key={item.id} whileTap={{ scale: 0.97 }} className="relative">
