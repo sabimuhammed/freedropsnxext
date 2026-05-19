@@ -19,8 +19,8 @@ const userInquiryItems = [
 ];
 
 const reportingItems = [
-  // { id: "analytics", href: "/admin/analytics", icon: "lucide:bar-chart-3", label: "Analytics" },
-   { id: "analytics", href: "/admin/redirect-links", icon: "lucide:bar-chart-3", label: "Analytics" },
+  { id: "analytics", href: "/admin/analytics", icon: "lucide:bar-chart-3", label: "Analytics" },
+  //  { id: "analytics", href: "/admin/redirect-links", icon: "lucide:bar-chart-3", label: "Analytics" },
 ];
 
 export default function AdminSidebar() {
