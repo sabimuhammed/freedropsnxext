@@ -36,12 +36,25 @@ public/
 
 ---
 
+## Test Login Credentials
+
+Both roles share the same login page at `/login`.
+
+| Role | Email | Password | Redirects to |
+|---|---|---|---|
+| Admin | `admin@gmail.com` | any | `/admin/dashboard` |
+| Sponsor | `sponsor@gmail.com` | any | `/sponsor/dashboard` |
+
+> Password is not validated — any value works in the current demo build.
+
+---
+
 ## User Roles & Entry Points
 
-### 1. Admin (`/admin/login`)
+### 1. Admin (`/login` → `admin@gmail.com`)
 FreeDrops internal staff who manage the entire platform.
 
-### 2. Sponsor (`/login`)
+### 2. Sponsor (`/login` → `sponsor@gmail.com`)
 Brand representatives who log in to manage their own campaigns.
 - New sponsors register at `/register` → success page at `/register-success`
 - Forgot password at `/forgot-password`
@@ -111,11 +124,11 @@ Brand representatives who log in to manage their own campaigns.
 - Top Locations table + Campaign Status donut chart side by side
 
 ### Campaigns List (`/admin/campaigns`)
-Filterable table of all campaigns with columns: Campaign Name, Sponsor, Status, Unique Scans, CTA Type, Start Date, Total Bottles, Scans, Clicks, Leads, Actions.
+Filterable table of all campaigns with columns: Campaign Name, Sponsor, Status, Unique Scans, Start Date, Total Bottles, Scans, Clicks, Leads, Actions.
 
 ### Campaign Detail Tabs
 Each campaign has 6 tabs:
-1. **Overview** — KPI cards + scan chart + campaign details
+1. **Overview** — KPI cards + campaign details
 2. **Project Brief** — industry/field, brand nature, target audience, business model, project manager
 3. **QR Links** — per-location QR codes
 4. **Analytics** — scan trend graph + location breakdown
@@ -141,10 +154,10 @@ Global redirect URL management. Each entry maps a slug (e.g. `/masafi-summer`) t
 | Step | Content |
 |---|---|
 | Step 1 | Basics — campaign name, sponsor, quantity, start date, notes, status |
-| Step 2 | Creative & CTA |
+| Step 2 | Creative & CTA — QR action type (External URL / WhatsApp / FreeDrops Landing) with banner, offer fields, About Us, Contact |
 | Step 3 | Targeting |
-| Step 4 | (in progress) |
-| Step 5 | (in progress) |
+| Step 4 | Locations & Tags — single location selector by emirate + category tags |
+| Step 5 | Review & Publish |
 
 ---
 

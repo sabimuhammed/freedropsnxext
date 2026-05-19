@@ -42,12 +42,12 @@ export default function AdminLoginPage() {
               </div>
 
               <div className="space-y-2">
-                <div className="flex justify-between items-center">
+                {/* <div className="flex justify-between items-center">
                   <label htmlFor="password" className="text-sm font-semibold text-slate-700 ml-1">Password</label>
                   <Link href="/admin/forgot-password" className="text-xs font-medium text-[#D63839] hover:underline">
                     Forgot password?
                   </Link>
-                </div>
+                </div> */}
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
                     <Icon icon="lucide:lock" className="text-xl" />
