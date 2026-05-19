@@ -9,6 +9,7 @@ const navItems = [
   { id: "campaigns", href: "/admin/campaigns", icon: "lucide:megaphone", label: "Campaigns" },
   { id: "sponsors", href: "/admin/sponsors", icon: "lucide:building-2", label: "Sponsors" },
   { id: "locations", href: "/admin/locations", icon: "lucide:map-pin", label: "Locations" },
+  { id: "qr", href: "/admin/qr-links", icon: "lucide:qr-code", label: "QR Codes" },
 ];
 
 const userInquiryItems = [
@@ -18,7 +19,8 @@ const userInquiryItems = [
 ];
 
 const reportingItems = [
-  { id: "analytics", href: "/admin/analytics", icon: "lucide:bar-chart-3", label: "Analytics" },
+  // { id: "analytics", href: "/admin/analytics", icon: "lucide:bar-chart-3", label: "Analytics" },
+   { id: "analytics", href: "/admin/redirect-links", icon: "lucide:bar-chart-3", label: "Analytics" },
 ];
 
 export default function AdminSidebar() {
