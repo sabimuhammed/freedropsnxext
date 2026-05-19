@@ -57,12 +57,7 @@ export default function LoginPage() {
               </div>
 
               <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <label htmlFor="password" className="text-sm font-semibold text-slate-700 ml-1">Password</label>
-                  <Link href="/forgot-password" className="text-xs font-medium text-[#B12B2C] hover:underline">
-                    Forgot password?
-                  </Link>
-                </div>
+          
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
                     <Icon icon="lucide:lock" />
@@ -88,11 +83,7 @@ export default function LoginPage() {
                 <label htmlFor="remember" className="text-sm text-slate-500">Remember me for 30 days</label>
               </div>
 
-              {/* Hint */}
-              <div className="text-xs text-slate-400 bg-slate-50 rounded-xl px-4 py-3 border border-slate-100 space-y-1">
-                <p><span className="font-semibold text-slate-500">Admin:</span> <span className="font-mono">admin@gmail.com</span></p>
-                <p><span className="font-semibold text-slate-500">Sponsor:</span> <span className="font-mono">sponsor@gmail.com</span></p>
-              </div>
+            
 
               <button
                 type="submit"
@@ -102,12 +93,11 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <div className="mt-8 text-center">
+            {/* <div className="mt-8 text-center">
               <p className="text-sm text-slate-500">
                 Need an account?{" "}
-                <Link href="/register" className="text-[#B12B2C] font-semibold hover:underline">Sign up</Link>
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </main>
