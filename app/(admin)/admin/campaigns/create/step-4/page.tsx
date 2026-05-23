@@ -13,8 +13,16 @@ const allLocations = [
   { name: "City Centre Deira", area: "Deira" },
 ];
 
+const CATEGORY_TAGS = [
+  { icon: "lucide:shopping-bag", label: "Mall" },
+  { icon: "lucide:calendar-days", label: "Event" },
+  { icon: "lucide:dumbbell", label: "Gym" },
+  { icon: "lucide:briefcase", label: "Office" },
+];
+
 export default function CreateCampaignStep4Page() {
   const [selected, setSelected] = useState<string>("The Dubai Mall");
+  const [selectedTags, setSelectedTags] = useState<string[]>(["Mall"]);
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -66,16 +74,19 @@ export default function CreateCampaignStep4Page() {
               <div className="space-y-2">
                 <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">Category Tag (Optional)</label>
                 <div className="flex flex-wrap gap-2 pt-1">
-                  {[
-                    { icon: "lucide:shopping-bag", label: "Mall", active: true },
-                    { icon: "lucide:calendar-days", label: "Event", active: false },
-                    { icon: "lucide:dumbbell", label: "Gym", active: false },
-                    { icon: "lucide:briefcase", label: "Office", active: false },
-                  ].map((tag) => (
-                    <button key={tag.label} className={`px-4 py-2 rounded-full border text-xs font-bold transition-all flex items-center gap-2 ${tag.active ? "border-red-100 bg-red-50 text-[#D63839]" : "border-gray-200 text-gray-600 hover:border-red-200"}`}>
-                      <Icon icon={tag.icon} />{tag.label}
-                    </button>
-                  ))}
+                  {CATEGORY_TAGS.map((tag) => {
+                    const isActive = selectedTags.includes(tag.label);
+                    return (
+                      <button
+                        key={tag.label}
+                        type="button"
+                        onClick={() => setSelectedTags((prev) => isActive ? prev.filter((t) => t !== tag.label) : [...prev, tag.label])}
+                        className={`px-4 py-2 rounded-full border text-xs font-bold transition-all flex items-center gap-2 ${isActive ? "border-red-100 bg-red-50 text-[#D63839]" : "border-gray-200 text-gray-600 hover:border-red-200"}`}
+                      >
+                        <Icon icon={tag.icon} />{tag.label}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>

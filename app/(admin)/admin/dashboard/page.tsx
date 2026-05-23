@@ -47,12 +47,19 @@ const stats = [
 ];
 
 const topCampaigns = [
-  { initials: "AQ", avatarBg: "bg-red-100", avatarColor: "text-red-600", name: "AquaPure Summer Rush", sponsor: "Masafi Water", bottles: "5,000", scans: "14,203", uniqueScans: "9,841", clicks: "1,402", leads: "—" },
-  { initials: "EG", avatarBg: "bg-amber-100", avatarColor: "text-amber-600", name: "Etisalat 5G Launch", sponsor: "Etisalat UAE", bottles: "3,500", scans: "9,102", uniqueScans: "6,730", clicks: "840", leads: "112" },
-  { initials: "DL", avatarBg: "bg-emerald-100", avatarColor: "text-emerald-600", name: "Dubai Logistics Exp", sponsor: "DP World", bottles: "8,200", scans: "7,845", uniqueScans: "5,210", clicks: "630", leads: "—" },
-  { initials: "EM", avatarBg: "bg-purple-100", avatarColor: "text-purple-600", name: "Emirates Skywards", sponsor: "Emirates", bottles: "12,000", scans: "6,102", uniqueScans: "4,488", clicks: "480", leads: "54" },
-  { initials: "ST", avatarBg: "bg-gray-100", avatarColor: "text-gray-600", name: "Starter Pilot V1", sponsor: "FreeDrops Lab", bottles: "2,000", scans: "4,102", uniqueScans: "3,201", clicks: "210", leads: "18" },
+  { initials: "AQ", avatarBg: "bg-red-100", avatarColor: "text-red-600", name: "AquaPure Summer Rush", sponsor: "Masafi Water", bottles: "5,000", scans: "14,203", uniqueScans: "9,841", clicks: "1,402", leads: "—", status: "Live" },
+  { initials: "EG", avatarBg: "bg-amber-100", avatarColor: "text-amber-600", name: "Etisalat 5G Launch", sponsor: "Etisalat UAE", bottles: "3,500", scans: "9,102", uniqueScans: "6,730", clicks: "840", leads: "112", status: "In Review" },
+  { initials: "DL", avatarBg: "bg-emerald-100", avatarColor: "text-emerald-600", name: "Dubai Logistics Exp", sponsor: "DP World", bottles: "8,200", scans: "7,845", uniqueScans: "5,210", clicks: "630", leads: "—", status: "Completed" },
+  { initials: "EM", avatarBg: "bg-purple-100", avatarColor: "text-purple-600", name: "Emirates Skywards", sponsor: "Emirates", bottles: "12,000", scans: "6,102", uniqueScans: "4,488", clicks: "480", leads: "54", status: "Awaiting Creative" },
+  { initials: "ST", avatarBg: "bg-gray-100", avatarColor: "text-gray-600", name: "Starter Pilot V1", sponsor: "FreeDrops Lab", bottles: "2,000", scans: "4,102", uniqueScans: "3,201", clicks: "210", leads: "18", status: "Live" },
 ];
+
+const statusStyles: Record<string, string> = {
+  "Live": "bg-emerald-50 text-emerald-700",
+  "In Review": "bg-amber-50 text-amber-700",
+  "Completed": "bg-gray-100 text-gray-600",
+  "Awaiting Creative": "bg-purple-50 text-purple-700",
+};
 
 const topLocations = [
   { icon: "lucide:building", name: "Dubai Mall - P3 Entrance", scans: "42,109" },
@@ -147,6 +154,7 @@ export default function AdminDashboardPage() {
                 <th className="px-6 py-4">Unique Scans</th>
                 <th className="px-6 py-4">Clicks</th>
                 <th className="px-6 py-4">Leads</th>
+                <th className="px-6 py-4">Status</th>
               </tr>
             </thead>
             <AnimatedTbody className="divide-y divide-gray-50">
@@ -166,6 +174,11 @@ export default function AdminDashboardPage() {
                   <td className="px-6 py-4 font-mono text-purple-700">{c.uniqueScans}</td>
                   <td className="px-6 py-4 font-mono">{c.clicks}</td>
                   <td className={`px-6 py-4 font-mono ${c.leads === "—" ? "text-gray-400" : ""}`}>{c.leads}</td>
+                  <td className="px-6 py-4">
+                    <span className={`inline-block px-2.5 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${statusStyles[c.status]}`}>
+                      {c.status}
+                    </span>
+                  </td>
                 </AnimatedRow>
               ))}
             </AnimatedTbody>
