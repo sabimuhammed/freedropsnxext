@@ -45,9 +45,6 @@ export default function SponsorCampaignsPage() {
             <a href="#" className="tab-active whitespace-nowrap py-4 px-1 text-sm font-bold border-b-2 tracking-tight">
               Campaign History
             </a>
-            <a href="#" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 text-sm font-medium border-b-2 tracking-tight">
-              Settings
-            </a>
           </nav>
         </div>
 
@@ -60,10 +57,11 @@ export default function SponsorCampaignsPage() {
                   <th className="px-6 py-4">Campaign Name</th>
                   <th className="px-6 py-4">Status</th>
                   <th className="px-6 py-4">Start Date</th>
+                  <th className="px-6 py-4">Total Bottles</th>
                   <th className="px-6 py-4">Scans</th>
+                  <th className="px-6 py-4">Unique Scans</th>
                   <th className="px-6 py-4">Clicks</th>
                   <th className="px-6 py-4">Leads</th>
-                  <th className="px-6 py-4 text-right">Actions</th>
                 </tr>
               </thead>
               <AnimatedTbody className="divide-y divide-gray-50 text-sm">
@@ -80,10 +78,11 @@ export default function SponsorCampaignsPage() {
                   </td>
                   <td className="px-6 py-4"><span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-green-700">Active</span></td>
                   <td className="px-6 py-4 text-gray-600">Jun 12, 2024</td>
+                  <td className="px-6 py-4 font-medium text-gray-900">15,000</td>
                   <td className="px-6 py-4 font-medium text-gray-900">12,504</td>
+                  <td className="px-6 py-4 text-gray-600">9,841</td>
                   <td className="px-6 py-4 text-gray-600">3,218</td>
                   <td className="px-6 py-4 text-gray-600">452</td>
-                  <td className="px-6 py-4 text-right"><a href="#" className="inline-flex items-center text-xs font-bold text-[#D63839] hover:text-[#C63238] uppercase tracking-wide">Open Campaign</a></td>
                 </AnimatedRow>
 
                 {/* Fitness Village Hydration */}
@@ -98,10 +97,11 @@ export default function SponsorCampaignsPage() {
                   </td>
                   <td className="px-6 py-4"><span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-700">Paused</span></td>
                   <td className="px-6 py-4 text-gray-600">Jul 01, 2024</td>
+                  <td className="px-6 py-4 font-medium text-gray-900">10,000</td>
                   <td className="px-6 py-4 font-medium text-gray-900">8,240</td>
+                  <td className="px-6 py-4 text-gray-600">6,730</td>
                   <td className="px-6 py-4 text-gray-600">1,102</td>
                   <td className="px-6 py-4 text-gray-600">128</td>
-                  <td className="px-6 py-4 text-right"><a href="#" className="inline-flex items-center text-xs font-bold text-[#D63839] hover:text-[#C63238] uppercase tracking-wide">Open Campaign</a></td>
                 </AnimatedRow>
 
                 {/* Al Quoz Arts Festival */}
@@ -116,10 +116,11 @@ export default function SponsorCampaignsPage() {
                   </td>
                   <td className="px-6 py-4"><span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700">Completed</span></td>
                   <td className="px-6 py-4 text-gray-600">May 15, 2024</td>
+                  <td className="px-6 py-4 font-medium text-gray-900">25,000</td>
                   <td className="px-6 py-4 font-medium text-gray-900">22,418</td>
+                  <td className="px-6 py-4 text-gray-600">18,204</td>
                   <td className="px-6 py-4 text-gray-600">5,602</td>
                   <td className="px-6 py-4 text-gray-600">894</td>
-                  <td className="px-6 py-4 text-right"><a href="#" className="inline-flex items-center text-xs font-bold text-[#D63839] hover:text-[#C63238] uppercase tracking-wide">Open Campaign</a></td>
                 </AnimatedRow>
 
                 {/* Expo City Hydration */}
@@ -134,10 +135,11 @@ export default function SponsorCampaignsPage() {
                   </td>
                   <td className="px-6 py-4"><span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-green-700">Active</span></td>
                   <td className="px-6 py-4 text-gray-600">Jul 10, 2024</td>
+                  <td className="px-6 py-4 font-medium text-gray-900">8,000</td>
                   <td className="px-6 py-4 font-medium text-gray-900">4,120</td>
+                  <td className="px-6 py-4 text-gray-600">3,201</td>
                   <td className="px-6 py-4 text-gray-600">958</td>
                   <td className="px-6 py-4 text-gray-600">92</td>
-                  <td className="px-6 py-4 text-right"><a href="#" className="inline-flex items-center text-xs font-bold text-[#D63839] hover:text-[#C63238] uppercase tracking-wide">Open Campaign</a></td>
                 </AnimatedRow>
 
                 {/* Zabeel Park Weekend — Draft, no image */}
@@ -152,10 +154,11 @@ export default function SponsorCampaignsPage() {
                   </td>
                   <td className="px-6 py-4"><span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700">Draft</span></td>
                   <td className="px-6 py-4 text-gray-600">Aug 01, 2024</td>
+                  <td className="px-6 py-4 font-medium text-gray-900">—</td>
                   <td className="px-6 py-4 font-medium text-gray-900">0</td>
                   <td className="px-6 py-4 text-gray-600">0</td>
                   <td className="px-6 py-4 text-gray-600">0</td>
-                  <td className="px-6 py-4 text-right"><a href="#" className="inline-flex items-center text-xs font-bold text-[#D63839] hover:text-[#C63238] uppercase tracking-wide">Open Campaign</a></td>
+                  <td className="px-6 py-4 text-gray-600">0</td>
                 </AnimatedRow>
 
                 {/* Dubai Marina Walk */}
@@ -170,10 +173,11 @@ export default function SponsorCampaignsPage() {
                   </td>
                   <td className="px-6 py-4"><span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700">Completed</span></td>
                   <td className="px-6 py-4 text-gray-600">Apr 10, 2024</td>
+                  <td className="px-6 py-4 font-medium text-gray-900">20,000</td>
                   <td className="px-6 py-4 font-medium text-gray-900">18,920</td>
+                  <td className="px-6 py-4 text-gray-600">15,104</td>
                   <td className="px-6 py-4 text-gray-600">4,105</td>
                   <td className="px-6 py-4 text-gray-600">712</td>
-                  <td className="px-6 py-4 text-right"><a href="#" className="inline-flex items-center text-xs font-bold text-[#D63839] hover:text-[#C63238] uppercase tracking-wide">Open Campaign</a></td>
                 </AnimatedRow>
 
               </AnimatedTbody>

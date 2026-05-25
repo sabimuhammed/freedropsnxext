@@ -72,7 +72,7 @@ export default function QRLinksGlobalPage() {
                 <th className="px-6 py-4 font-semibold">Scans</th>
                 <th className="px-6 py-4 font-semibold">Progress</th>
                 <th className="px-6 py-4 font-semibold whitespace-nowrap">QR Code</th>
-                <th className="px-6 py-4 font-semibold text-right">Actions</th>
+                <th className="px-6 py-4 font-semibold text-right whitespace-nowrap">Download QR Code</th>
               </tr>
             </thead>
             <AnimatedTbody className="divide-y divide-gray-50 text-sm">

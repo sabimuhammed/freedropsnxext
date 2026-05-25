@@ -20,7 +20,7 @@ const stats = [
     icon: "lucide:scan",
     color: "text-[#D63839]",
     bg: "bg-red-50",
-  },
+  },  
   {
     label: "Total CTA Clicks",
     value: "12,402",
@@ -43,6 +43,13 @@ const stats = [
     icon: "lucide:trending-up",
     color: "text-purple-600",
     bg: "bg-purple-50",
+  },
+    {
+    label: "Total Unique Scans",
+    value: "122,890",
+    icon: "lucide:scan-qr-code",
+    color: "text-[#D63839]",
+    bg: "bg-red-50",
   },
 ];
 
@@ -116,7 +123,7 @@ export default function AdminDashboardPage() {
         </div>
       </header>
 
-      <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
+      <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {stats.map((s) => (
           <AnimatedCell key={s.label} className="stat-card p-5 rounded-2xl">
             <div className="flex items-center justify-between mb-4">

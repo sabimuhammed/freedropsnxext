@@ -89,7 +89,7 @@ export default function SponsorProfilePage() {
         </div>
 
         {/* Quick Stats — hardcoded to avoid Tailwind JIT purging dynamic classes */}
-        <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+        <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
 
           <AnimatedCell className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
             <div className="flex items-center justify-between mb-3">
@@ -119,7 +119,7 @@ export default function SponsorProfilePage() {
             </div>
             <p className="text-sm font-medium text-gray-500">Total Scans</p>
             <h3 className="text-2xl font-bold text-gray-900">18,290</h3>
-            <span className="text-[10px] font-bold text-[#D63839] bg-red-50 px-2 py-1 rounded-lg">49.8%</span>
+            {/* <span className="text-[10px] font-bold text-[#D63839] bg-red-50 px-2 py-1 rounded-lg">49.8%</span> */}
           </AnimatedCell>
 
           <AnimatedCell className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
@@ -141,6 +141,18 @@ export default function SponsorProfilePage() {
             <p className="text-sm font-medium text-gray-500">Total Leads</p>
             <h3 className="text-2xl font-bold text-gray-900">1,028</h3>
           </AnimatedCell>
+
+          <AnimatedCell className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+                <Icon icon="lucide:scan-qr-code" className="text-xl" />
+              </div>
+            </div>
+            <p className="text-sm font-medium text-gray-500">Total Unique Scans</p>
+            <h3 className="text-2xl font-bold text-gray-900">9,841</h3>
+          </AnimatedCell>
+
+
 
         </AnimatedGrid>
 

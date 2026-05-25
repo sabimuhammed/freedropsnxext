@@ -40,9 +40,12 @@ export default function CampaignOverviewPage({ params }: { params: { id: string 
 
       <CampaignDetailTabs id={params.id} active="overview" />
 
-      <AnimatedGrid className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <AnimatedGrid className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         {[
+          { label: "Totel Bottles", value: "11.0%", sub: "+2.1% vs avg", icon: "lucide:package", color: "text-blue-600", bg: "bg-blue-50" },
           { label: "Bottles Scanned", value: "12,504", sub: "83.4% of 15,000", icon: "lucide:droplets", color: "text-[#D63839]", bg: "bg-red-50" },
+          { label: "Totel Unique Bottle Scans", value: "11.0%", sub: "+2.1% vs avg", icon: "lucide:scan-qr-code", color: "text-[#D63839]", bg: "bg-red-50" },
+
           { label: "Total Clicks", value: "3,218", sub: "25.7% CTR", icon: "lucide:mouse-pointer-click", color: "text-blue-600", bg: "bg-blue-50" },
           { label: "Leads Captured", value: "452", sub: "14.0% lead rate", icon: "lucide:users", color: "text-emerald-600", bg: "bg-emerald-50" },
           { label: "Conversion Rate", value: "14.0%", sub: "+2.1% vs avg", icon: "lucide:trending-up", color: "text-purple-600", bg: "bg-purple-50" },
