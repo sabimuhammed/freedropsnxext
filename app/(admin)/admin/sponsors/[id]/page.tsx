@@ -160,7 +160,7 @@ export default function SponsorProfilePage() {
         <div className="border-b border-gray-200 mb-6">
           <nav className="-mb-px flex space-x-8">
             <a href="#" className="tab-active whitespace-nowrap py-4 px-1 text-sm font-bold border-b-2 tracking-tight">Overview</a>
-            <a href="#" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 text-sm font-medium border-b-2 tracking-tight">Assets &amp; Media</a>
+            <Link href="/admin/sponsors/1/assets" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 text-sm font-medium border-b-2 tracking-tight">Assets &amp; Media</Link>
             <Link href="/admin/sponsors/1/campaigns" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 text-sm font-medium border-b-2 tracking-tight">Campaign History</Link>
             <a href="#" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 text-sm font-medium border-b-2 tracking-tight">Settings</a>
           </nav>

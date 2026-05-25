@@ -1,87 +1,349 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import CampaignDetailTabs from "@/components/admin/CampaignDetailTabs";
 import AnimatedPage from "@/components/shared/AnimatedPage";
 import { AnimatedTbody, AnimatedRow } from "@/components/shared/AnimatedGrid";
 
-export const metadata = { title: "Campaign Detail — QR Links | FreeDrops Admin" };
+type QREntry = {
+  name: string;
+  created: string;
+  location: string;
+  type: "URL REDIRECT" | "LEAD FORM";
+  destination: string;
+  scans: string;
+};
 
-const qrLinks = [
-  { location: "The Dubai Mall", zone: "Ground Floor Entrance", scans: "4,218", bottles: "5,000", pct: 84, status: "Active" },
-  { location: "Mall of the Emirates", zone: "Food Court", scans: "3,104", bottles: "4,000", pct: 78, status: "Active" },
-  { location: "Dubai Festival City", zone: "Main Atrium", scans: "2,812", bottles: "3,500", pct: 80, status: "Active" },
-  { location: "Ibn Battuta Mall", zone: "China Court", scans: "1,890", bottles: "2,500", pct: 76, status: "Paused" },
+const initialQRLinks: QREntry[] = [
+  { name: "Summer_Dubai_Mall_01", created: "Created Jul 01, 2024", location: "The Dubai Mall", type: "URL REDIRECT", destination: "alainwater.com/summer", scans: "1,248" },
+  { name: "Summer_Mall_Emirates_02", created: "Created Jul 01, 2024", location: "Mall of the Emirates", type: "LEAD FORM", destination: "fd.sh/form-wa-refresh", scans: "856" },
+  { name: "Summer_Marina_Walk_03", created: "Created Jul 02, 2024", location: "Dubai Marina Walk", type: "URL REDIRECT", destination: "alainwater.com/summer", scans: "412" },
 ];
 
+function qrImageUrl(destination: string) {
+  return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(destination)}`;
+}
+
+function todayLabel() {
+  return `Created ${new Date().toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}`;
+}
+
 export default function CampaignQRLinksPage({ params }: { params: { id: string } }) {
+  const [qrLinks, setQrLinks] = useState<QREntry[]>(initialQRLinks);
+  const [tab, setTab] = useState<"location" | "campaign">("location");
+  const [search, setSearch] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const [form, setForm] = useState({
+    name: "",
+    location: "",
+    type: "URL REDIRECT" as "URL REDIRECT" | "LEAD FORM",
+    destination: "",
+  });
+  const [formError, setFormError] = useState("");
+
+  const filtered = qrLinks.filter(
+    (q) =>
+      q.name.toLowerCase().includes(search.toLowerCase()) ||
+      q.location.toLowerCase().includes(search.toLowerCase())
+  );
+
+  function handleGenerate() {
+    if (!form.name.trim() || !form.location.trim() || !form.destination.trim()) {
+      setFormError("All fields are required.");
+      return;
+    }
+    setQrLinks((prev) => [
+      ...prev,
+      {
+        name: form.name.trim(),
+        created: todayLabel(),
+        location: form.location.trim(),
+        type: form.type,
+        destination: form.destination.trim(),
+        scans: "0",
+      },
+    ]);
+    setForm({ name: "", location: "", type: "URL REDIRECT", destination: "" });
+    setFormError("");
+    setModalOpen(false);
+  }
+
+  function handleCopy(destination: string) {
+    navigator.clipboard.writeText(destination);
+    setCopied(destination);
+    setTimeout(() => setCopied(null), 1500);
+  }
+
+  function handleDownload(entry: QREntry) {
+    const url = qrImageUrl(entry.destination);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${entry.name}.png`;
+    a.target = "_blank";
+    a.click();
+  }
+
   return (
     <AnimatedPage>
     <div className="max-w-6xl mx-auto">
-      <div className="flex items-end justify-between mb-8">
-        <div>
-          <nav className="flex mb-1">
+
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+        <div className="space-y-1">
+          <nav className="flex">
             <ol className="inline-flex items-center space-x-2 text-xs">
               <li><Link href="/admin/campaigns" className="text-gray-400 hover:text-[#D63839]">Campaigns</Link></li>
               <li><Icon icon="lucide:chevron-right" className="text-gray-300 mx-1" /></li>
               <li><span className="font-bold text-gray-900">Summer Refresh 2024</span></li>
             </ol>
           </nav>
-          <h1 className="text-2xl font-bold text-gray-900">Summer Refresh 2024</h1>
+          <div className="flex items-center gap-4 mt-1">
+            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Summer Refresh 2024</h1>
+            <span className="px-3 py-1 bg-green-50 text-green-700 text-xs font-bold rounded-full border border-green-200">Live</span>
+          </div>
+          <p className="text-sm text-gray-500">Managed for <span className="font-semibold text-gray-700">Al Ain Water</span> • ID: FD-SUMMER-24-001</p>
         </div>
-        <button className="flex items-center gap-2 bg-[#D63839] hover:bg-red-700 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-sm shadow-red-200">
-          <Icon icon="lucide:plus" />Add QR Link
+        <button
+          onClick={() => setModalOpen(true)}
+          className="flex items-center gap-2 bg-[#D63839] hover:bg-red-700 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-sm shadow-red-200 whitespace-nowrap"
+        >
+          <Icon icon="lucide:plus" />Generate QR
         </button>
       </div>
 
       <CampaignDetailTabs id={params.id} active="qr-links" />
 
-      <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+      {/* Table card */}
+      <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden mb-4">
+        <div className="p-4 flex items-center justify-between gap-4 border-b border-gray-100">
+          <div className="flex gap-2">
+            <button
+              onClick={() => setTab("location")}
+              className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all ${tab === "location" ? "bg-gray-900 text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}
+            >
+              Per Location QR
+            </button>
+            <button
+              onClick={() => setTab("campaign")}
+              className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all ${tab === "campaign" ? "bg-gray-900 text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}
+            >
+              Campaign-level QR
+            </button>
+          </div>
+          <div className="relative">
+            <Icon icon="lucide:search" className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
+            <input
+              type="text"
+              placeholder="Search QRs..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#D63839]/20 w-48"
+            />
+          </div>
+        </div>
+
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead className="bg-gray-50/50">
-              <tr className="table-header">
-                <th className="px-6 py-4 font-semibold">Location</th>
-                <th className="px-6 py-4 font-semibold">Zone</th>
-                <th className="px-6 py-4 font-semibold">Status</th>
-                <th className="px-6 py-4 font-semibold">Scans</th>
-                <th className="px-6 py-4 font-semibold">Bottles</th>
-                <th className="px-6 py-4 font-semibold">Progress</th>
-                <th className="px-6 py-4 font-semibold text-right">Actions</th>
+              <tr className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                <th className="px-6 py-4">QR Name & Metadata</th>
+                <th className="px-6 py-4">Location</th>
+                <th className="px-6 py-4">Destination</th>
+                <th className="px-6 py-4">QR Code</th>
+                <th className="px-6 py-4">Scans</th>
+                <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
-            <AnimatedTbody className="divide-y divide-gray-50 text-sm">
-              {qrLinks.map((q) => (
-                <AnimatedRow key={q.location} className="hover:bg-gray-50/50 transition-colors">
-                  <td className="px-6 py-4 font-semibold text-gray-900">{q.location}</td>
-                  <td className="px-6 py-4 text-gray-500">{q.zone}</td>
-                  <td className="px-6 py-4">
-                    <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${q.status === "Active" ? "bg-green-50 text-green-700" : "bg-amber-50 text-amber-700"}`}>
-                      {q.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 font-medium text-gray-900">{q.scans}</td>
-                  <td className="px-6 py-4 font-mono font-bold text-gray-900">{q.bottles}</td>
-                  <td className="px-6 py-4 w-40">
-                    <div className="flex items-center gap-2">
-                      <div className="flex-1 bg-gray-100 rounded-full h-1.5">
-                        <div className="bg-[#D63839] h-1.5 rounded-full" style={{ width: `${q.pct}%` }} />
+            <AnimatedTbody className="divide-y divide-gray-100 text-sm">
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="px-6 py-10 text-center text-gray-400 text-sm">No QR codes found.</td>
+                </tr>
+              ) : (
+                filtered.map((q) => (
+                  <AnimatedRow key={q.name} className="hover:bg-gray-50/50 transition-colors">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center shrink-0">
+                          <Icon icon="lucide:qr-code" className="text-gray-400 text-lg" />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-900">{q.name}</p>
+                          <p className="text-xs text-gray-400">{q.created}</p>
+                        </div>
                       </div>
-                      <span className="text-xs text-gray-500 w-8">{q.pct}%</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex items-center justify-end gap-3">
-                      <button className="text-gray-400 hover:text-[#D63839] transition-colors"><Icon icon="lucide:download" /></button>
-                      <button className="text-gray-400 hover:text-[#D63839] transition-colors"><Icon icon="lucide:copy" /></button>
-                      <button className="text-gray-400 hover:text-gray-600 transition-colors"><Icon icon="lucide:more-horizontal" /></button>
-                    </div>
-                  </td>
-                </AnimatedRow>
-              ))}
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-1.5 text-gray-600">
+                        <Icon icon="lucide:map-pin" className="text-gray-400 text-xs shrink-0" />
+                        {q.location}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold mb-1 ${q.type === "LEAD FORM" ? "bg-blue-50 text-blue-600" : "bg-purple-50 text-purple-600"}`}>
+                        {q.type}
+                      </span>
+                      <p className="text-xs text-gray-400 max-w-[140px] truncate">{q.destination}</p>
+                    </td>
+                    <td className="px-6 py-4">
+                      <img
+                        src={qrImageUrl(q.destination)}
+                        alt={`QR for ${q.name}`}
+                        className="w-12 h-12 rounded"
+                      />
+                    </td>
+                    <td className="px-6 py-4 font-bold text-gray-900">{q.scans}</td>
+                    <td className="px-6 py-4 text-right">
+                      <div className="flex items-center justify-end gap-3">
+                        <button
+                          onClick={() => handleCopy(q.destination)}
+                          className="text-gray-400 hover:text-gray-700 transition-colors"
+                          title="Copy destination URL"
+                        >
+                          <Icon icon={copied === q.destination ? "lucide:check" : "lucide:copy"} />
+                        </button>
+                        <button
+                          onClick={() => handleDownload(q)}
+                          className="text-gray-400 hover:text-gray-700 transition-colors"
+                          title="Download QR code"
+                        >
+                          <Icon icon="lucide:download" />
+                        </button>
+                      </div>
+                    </td>
+                  </AnimatedRow>
+                ))
+              )}
             </AnimatedTbody>
           </table>
         </div>
+
+        <div className="px-6 py-4 border-t border-gray-100">
+          <p className="text-xs text-gray-500">Showing {filtered.length} of {qrLinks.length} generated QR links</p>
+        </div>
       </div>
+
+      {/* Bulk Asset Export */}
+      <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-5 flex items-center justify-between gap-6">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center shrink-0">
+            <Icon icon="lucide:layers" className="text-[#D63839] text-2xl" />
+          </div>
+          <div>
+            <p className="font-bold text-gray-900">Bulk Asset Export</p>
+            <p className="text-sm text-gray-500 max-w-md">Download all campaign QR codes at once in high-resolution vector or raster formats for printing.</p>
+          </div>
+        </div>
+        <div className="flex gap-3 shrink-0">
+          <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 whitespace-nowrap">
+            <Icon icon="lucide:image" />All PNG (.zip)
+          </button>
+          <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 whitespace-nowrap">
+            <Icon icon="lucide:file-code" />All SVG (.zip)
+          </button>
+        </div>
+      </div>
+
+      {/* Generate QR Modal */}
+      {modalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setModalOpen(false)} />
+          <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-md p-6">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-bold text-gray-900">Generate QR Code</h2>
+              <button onClick={() => setModalOpen(false)} className="text-gray-400 hover:text-gray-600">
+                <Icon icon="lucide:x" className="text-xl" />
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">QR Name</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Summer_JBR_Walk_04"
+                  value={form.name}
+                  onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#D63839]/20"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">Location</label>
+                <input
+                  type="text"
+                  placeholder="e.g. JBR Walk"
+                  value={form.location}
+                  onChange={(e) => setForm((f) => ({ ...f, location: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#D63839]/20"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">Destination Type</label>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setForm((f) => ({ ...f, type: "URL REDIRECT" }))}
+                    className={`flex-1 py-2 text-sm font-semibold rounded-lg border transition-all ${form.type === "URL REDIRECT" ? "bg-purple-50 border-purple-200 text-purple-700" : "border-gray-200 text-gray-500 hover:bg-gray-50"}`}
+                  >
+                    URL Redirect
+                  </button>
+                  <button
+                    onClick={() => setForm((f) => ({ ...f, type: "LEAD FORM" }))}
+                    className={`flex-1 py-2 text-sm font-semibold rounded-lg border transition-all ${form.type === "LEAD FORM" ? "bg-blue-50 border-blue-200 text-blue-700" : "border-gray-200 text-gray-500 hover:bg-gray-50"}`}
+                  >
+                    Lead Form
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">Destination URL</label>
+                <input
+                  type="text"
+                  placeholder="e.g. alainwater.com/summer"
+                  value={form.destination}
+                  onChange={(e) => setForm((f) => ({ ...f, destination: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#D63839]/20"
+                />
+              </div>
+
+              {form.destination && (
+                <div className="flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-xl">
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">QR Preview</p>
+                  <img
+                    src={qrImageUrl(form.destination)}
+                    alt="QR Preview"
+                    className="w-28 h-28 rounded-lg"
+                  />
+                </div>
+              )}
+
+              {formError && <p className="text-xs text-red-500 font-medium">{formError}</p>}
+            </div>
+
+            <div className="flex gap-3 mt-6">
+              <button
+                onClick={() => setModalOpen(false)}
+                className="flex-1 py-2.5 border border-gray-200 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleGenerate}
+                className="flex-1 py-2.5 bg-[#D63839] hover:bg-red-700 text-white rounded-lg text-sm font-semibold transition-all"
+              >
+                Generate QR
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
     </AnimatedPage>
   );

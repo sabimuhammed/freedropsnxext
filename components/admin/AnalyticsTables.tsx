@@ -38,11 +38,11 @@ export default function AnalyticsTables() {
             Redirect Links
           </button>
         </div>
-        {tab === "redirect-links" && (
+        {/* {tab === "redirect-links" && (
           <button className="flex items-center gap-2 bg-[#D63839] hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm shadow-red-200 mb-3">
             <Icon icon="lucide:plus" />Add Link
           </button>
-        )}
+        )} */}
       </div>
 
       <div className="overflow-x-auto">
@@ -91,7 +91,7 @@ export default function AnalyticsTables() {
                 <th className="px-6 py-4">Unique Scans</th>
                 <th className="px-6 py-4">Clicks</th>
                 <th className="px-6 py-4">Created</th>
-                <th className="px-6 py-4 text-right">Actions</th>
+           
               </tr>
             </thead>
             <AnimatedTbody className="divide-y divide-gray-50 text-sm">
@@ -110,13 +110,7 @@ export default function AnalyticsTables() {
                   <td className="px-6 py-4 font-mono text-purple-700">{l.uniqueScans}</td>
                   <td className="px-6 py-4 font-mono text-gray-900">{l.clicks}</td>
                   <td className="px-6 py-4 text-gray-500">{l.created}</td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <button className="text-gray-400 hover:text-[#D63839]"><Icon icon="lucide:edit-3" /></button>
-                      <button className="text-gray-400 hover:text-[#D63839]"><Icon icon="lucide:copy" /></button>
-                      <button className="text-gray-400 hover:text-red-500"><Icon icon="lucide:trash-2" /></button>
-                    </div>
-                  </td>
+               
                 </AnimatedRow>
               ))}
             </AnimatedTbody>

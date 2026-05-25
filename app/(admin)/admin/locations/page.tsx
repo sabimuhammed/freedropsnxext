@@ -236,7 +236,7 @@ export default function LocationsManagementPage() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-gray-700">Type</label>
+                <label className="text-sm font-semibold text-gray-700">Category Tag</label>
                 <select
                   value={form.type}
                   onChange={(e) => setForm({ ...form, type: e.target.value })}

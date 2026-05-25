@@ -39,9 +39,9 @@ export default function SponsorCampaignsPage() {
             <Link href="/admin/sponsors/1" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 text-sm font-medium border-b-2 tracking-tight">
               Overview
             </Link>
-            <a href="#" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 text-sm font-medium border-b-2 tracking-tight">
+            <Link href="/admin/sponsors/1/assets" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 text-sm font-medium border-b-2 tracking-tight">
               Assets &amp; Media
-            </a>
+            </Link>
             <a href="#" className="tab-active whitespace-nowrap py-4 px-1 text-sm font-bold border-b-2 tracking-tight">
               Campaign History
             </a>

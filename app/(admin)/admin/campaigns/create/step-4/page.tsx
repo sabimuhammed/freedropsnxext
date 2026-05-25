@@ -51,10 +51,10 @@ export default function CreateCampaignStep4Page() {
               <h3 className="text-xl font-bold text-gray-900">Target Locations & Tags</h3>
               <p className="text-sm text-gray-500 mt-1">Define where your campaign will be distributed across the UAE.</p>
             </div>
-            <div className="px-4 py-2 bg-blue-50 border border-blue-100 rounded-xl flex items-center gap-2">
+            {/* <div className="px-4 py-2 bg-blue-50 border border-blue-100 rounded-xl flex items-center gap-2">
               <Icon icon="lucide:info" className="text-blue-600" />
               <span className="text-[11px] font-bold text-blue-700 uppercase tracking-tight">No GPS Tracking Required</span>
-            </div>
+            </div> */}
           </div>
 
           <div className="space-y-8">

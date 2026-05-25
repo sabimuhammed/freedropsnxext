@@ -6,8 +6,9 @@ import AnalyticsTables from "@/components/admin/AnalyticsTables";
 export const metadata = { title: "Analytics | FreeDrops Admin" };
 
 const stats = [
+  { label: "Total Bottles", value: "78,000", icon: "lucide:package", color: "text-purple-600", bg: "bg-purple-50" },
   { label: "Total Scans", value: "142,890", icon: "lucide:scan", color: "text-[#D63839]", bg: "bg-red-50" },
-  { label: "Unique Users", value: "98,340", icon: "lucide:users", color: "text-blue-600", bg: "bg-blue-50" },
+  { label: "Unique Scans", value: "98,340", icon: "lucide:scan-qr-code", color: "text-blue-600", bg: "bg-blue-50" },
   { label: "Total Clicks", value: "12,402", icon: "lucide:mouse-pointer-click", color: "text-emerald-600", bg: "bg-emerald-50" },
   { label: "Total Leads", value: "842", icon: "lucide:user-check", color: "text-amber-600", bg: "bg-amber-50" },
   { label: "Avg. Conversion", value: "6.8%", icon: "lucide:trending-up", color: "text-purple-600", bg: "bg-purple-50" },
@@ -40,7 +41,7 @@ export default function AdminAnalyticsPage() {
         </div>
       </div>
 
-      <AnimatedGrid className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+      <AnimatedGrid className="grid grid-cols-2 lg:grid-cols-6 gap-4 mb-8">
         {stats.map((s) => (
           <AnimatedCell key={s.label} className="bg-white border border-gray-200 rounded-2xl p-5">
             <div className={`w-9 h-9 ${s.bg} rounded-xl flex items-center justify-center mb-3`}>
