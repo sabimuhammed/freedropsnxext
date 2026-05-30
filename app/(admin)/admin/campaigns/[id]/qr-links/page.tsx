@@ -26,51 +26,17 @@ function qrImageUrl(destination: string) {
   return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(destination)}`;
 }
 
-function todayLabel() {
-  return `Created ${new Date().toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" })}`;
-}
-
 export default function CampaignQRLinksPage({ params }: { params: { id: string } }) {
-  const [qrLinks, setQrLinks] = useState<QREntry[]>(initialQRLinks);
-  const [tab, setTab] = useState<"location" | "campaign">("location");
+  const [qrLinks] = useState<QREntry[]>(initialQRLinks);
+  const [tab, setTab] = useState<"campaign">("campaign");
   const [search, setSearch] = useState("");
-  const [modalOpen, setModalOpen] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
-
-  const [form, setForm] = useState({
-    name: "",
-    location: "",
-    type: "URL REDIRECT" as "URL REDIRECT" | "LEAD FORM",
-    destination: "",
-  });
-  const [formError, setFormError] = useState("");
 
   const filtered = qrLinks.filter(
     (q) =>
       q.name.toLowerCase().includes(search.toLowerCase()) ||
       q.location.toLowerCase().includes(search.toLowerCase())
   );
-
-  function handleGenerate() {
-    if (!form.name.trim() || !form.location.trim() || !form.destination.trim()) {
-      setFormError("All fields are required.");
-      return;
-    }
-    setQrLinks((prev) => [
-      ...prev,
-      {
-        name: form.name.trim(),
-        created: todayLabel(),
-        location: form.location.trim(),
-        type: form.type,
-        destination: form.destination.trim(),
-        scans: "0",
-      },
-    ]);
-    setForm({ name: "", location: "", type: "URL REDIRECT", destination: "" });
-    setFormError("");
-    setModalOpen(false);
-  }
 
   function handleCopy(destination: string) {
     navigator.clipboard.writeText(destination);
@@ -107,12 +73,6 @@ export default function CampaignQRLinksPage({ params }: { params: { id: string }
           </div>
           <p className="text-sm text-gray-500">Managed for <span className="font-semibold text-gray-700">Al Ain Water</span> • ID: FD-SUMMER-24-001</p>
         </div>
-        <button
-          onClick={() => setModalOpen(true)}
-          className="flex items-center gap-2 bg-[#D63839] hover:bg-red-700 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-sm shadow-red-200 whitespace-nowrap"
-        >
-          <Icon icon="lucide:plus" />Generate QR
-        </button>
       </div>
 
       <CampaignDetailTabs id={params.id} active="qr-links" />
@@ -121,12 +81,6 @@ export default function CampaignQRLinksPage({ params }: { params: { id: string }
       <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden mb-4">
         <div className="p-4 flex items-center justify-between gap-4 border-b border-gray-100">
           <div className="flex gap-2">
-            <button
-              onClick={() => setTab("location")}
-              className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all ${tab === "location" ? "bg-gray-900 text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}
-            >
-              Per Location QR
-            </button>
             <button
               onClick={() => setTab("campaign")}
               className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all ${tab === "campaign" ? "bg-gray-900 text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}
@@ -226,123 +180,6 @@ export default function CampaignQRLinksPage({ params }: { params: { id: string }
           <p className="text-xs text-gray-500">Showing {filtered.length} of {qrLinks.length} generated QR links</p>
         </div>
       </div>
-
-      {/* Bulk Asset Export */}
-      <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-5 flex items-center justify-between gap-6">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center shrink-0">
-            <Icon icon="lucide:layers" className="text-[#D63839] text-2xl" />
-          </div>
-          <div>
-            <p className="font-bold text-gray-900">Bulk Asset Export</p>
-            <p className="text-sm text-gray-500 max-w-md">Download all campaign QR codes at once in high-resolution vector or raster formats for printing.</p>
-          </div>
-        </div>
-        <div className="flex gap-3 shrink-0">
-          <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 whitespace-nowrap">
-            <Icon icon="lucide:image" />All PNG (.zip)
-          </button>
-          <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 whitespace-nowrap">
-            <Icon icon="lucide:file-code" />All SVG (.zip)
-          </button>
-        </div>
-      </div>
-
-      {/* Generate QR Modal */}
-      {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setModalOpen(false)} />
-          <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-md p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-bold text-gray-900">Generate QR Code</h2>
-              <button onClick={() => setModalOpen(false)} className="text-gray-400 hover:text-gray-600">
-                <Icon icon="lucide:x" className="text-xl" />
-              </button>
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">QR Name</label>
-                <input
-                  type="text"
-                  placeholder="e.g. Summer_JBR_Walk_04"
-                  value={form.name}
-                  onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#D63839]/20"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">Location</label>
-                <input
-                  type="text"
-                  placeholder="e.g. JBR Walk"
-                  value={form.location}
-                  onChange={(e) => setForm((f) => ({ ...f, location: e.target.value }))}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#D63839]/20"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">Destination Type</label>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => setForm((f) => ({ ...f, type: "URL REDIRECT" }))}
-                    className={`flex-1 py-2 text-sm font-semibold rounded-lg border transition-all ${form.type === "URL REDIRECT" ? "bg-purple-50 border-purple-200 text-purple-700" : "border-gray-200 text-gray-500 hover:bg-gray-50"}`}
-                  >
-                    URL Redirect
-                  </button>
-                  <button
-                    onClick={() => setForm((f) => ({ ...f, type: "LEAD FORM" }))}
-                    className={`flex-1 py-2 text-sm font-semibold rounded-lg border transition-all ${form.type === "LEAD FORM" ? "bg-blue-50 border-blue-200 text-blue-700" : "border-gray-200 text-gray-500 hover:bg-gray-50"}`}
-                  >
-                    Lead Form
-                  </button>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5">Destination URL</label>
-                <input
-                  type="text"
-                  placeholder="e.g. alainwater.com/summer"
-                  value={form.destination}
-                  onChange={(e) => setForm((f) => ({ ...f, destination: e.target.value }))}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#D63839]/20"
-                />
-              </div>
-
-              {form.destination && (
-                <div className="flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-xl">
-                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">QR Preview</p>
-                  <img
-                    src={qrImageUrl(form.destination)}
-                    alt="QR Preview"
-                    className="w-28 h-28 rounded-lg"
-                  />
-                </div>
-              )}
-
-              {formError && <p className="text-xs text-red-500 font-medium">{formError}</p>}
-            </div>
-
-            <div className="flex gap-3 mt-6">
-              <button
-                onClick={() => setModalOpen(false)}
-                className="flex-1 py-2.5 border border-gray-200 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-50"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleGenerate}
-                className="flex-1 py-2.5 bg-[#D63839] hover:bg-red-700 text-white rounded-lg text-sm font-semibold transition-all"
-              >
-                Generate QR
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
     </div>
     </AnimatedPage>
