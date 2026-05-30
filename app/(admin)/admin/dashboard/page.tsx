@@ -20,7 +20,14 @@ const stats = [
     icon: "lucide:scan",
     color: "text-[#D63839]",
     bg: "bg-red-50",
-  },  
+  },
+  {
+    label: "Total Unique Scans",
+    value: "122,890",
+    icon: "lucide:scan-qr-code",
+    color: "text-[#D63839]",
+    bg: "bg-red-50",
+  },
   {
     label: "Total CTA Clicks",
     value: "12,402",
@@ -43,13 +50,6 @@ const stats = [
     icon: "lucide:trending-up",
     color: "text-purple-600",
     bg: "bg-purple-50",
-  },
-    {
-    label: "Total Unique Scans",
-    value: "122,890",
-    icon: "lucide:scan-qr-code",
-    color: "text-[#D63839]",
-    bg: "bg-red-50",
   },
 ];
 
