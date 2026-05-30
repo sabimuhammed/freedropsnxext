@@ -43,6 +43,8 @@ export default function CategoryTagsClient() {
   const [tags, setTags] = useState(INITIAL_TAGS);
   const [modalOpen, setModalOpen] = useState(false);
   const [form, setForm] = useState(EMPTY_FORM);
+  const [currentPage, setCurrentPage] = useState(1);
+  const PAGE_SIZE = 6;
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -74,9 +76,12 @@ export default function CategoryTagsClient() {
     ]);
     setForm(EMPTY_FORM);
     setModalOpen(false);
+    setCurrentPage(1);
   }
 
   const inactiveCount = tags.filter((t) => t.status === "Inactive").length;
+  const totalPages = Math.ceil(tags.length / PAGE_SIZE);
+  const pagedTags = tags.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
   return (
     <AnimatedPage>
@@ -151,7 +156,7 @@ export default function CategoryTagsClient() {
                 </tr>
               </thead>
               <AnimatedTbody className="divide-y divide-gray-50">
-                {tags.map((tag) => (
+                {pagedTags.map((tag) => (
                   <AnimatedRow key={tag.name + tag.created} className="text-sm text-gray-700 hover:bg-gray-50/50 transition-colors">
                     <td className="px-6 py-5">
                       <input type="checkbox" className="rounded border-gray-300 accent-[#D63839]" />
@@ -195,6 +200,42 @@ export default function CategoryTagsClient() {
                 ))}
               </AnimatedTbody>
             </table>
+          </div>
+
+          {/* Pagination */}
+          <div className="p-6 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
+            <p className="text-xs text-gray-500 font-medium">
+              Showing {Math.min((currentPage - 1) * PAGE_SIZE + 1, tags.length)}–{Math.min(currentPage * PAGE_SIZE, tags.length)} of {tags.length} tags
+            </p>
+            <div className="flex items-center gap-2">
+              <button
+                className="p-2 text-gray-400 hover:text-gray-900 disabled:opacity-30"
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage((p) => p - 1)}
+              >
+                <Icon icon="lucide:chevron-left" />
+              </button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`px-3 py-1 text-xs rounded transition-colors ${
+                    page === currentPage
+                      ? "font-bold bg-white border border-gray-200 text-[#D63839] shadow-sm"
+                      : "font-medium text-gray-600 hover:bg-gray-100"
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+              <button
+                className="p-2 text-gray-400 hover:text-gray-900 disabled:opacity-30"
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage((p) => p + 1)}
+              >
+                <Icon icon="lucide:chevron-right" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
