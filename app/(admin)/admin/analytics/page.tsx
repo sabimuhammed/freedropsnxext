@@ -7,8 +7,8 @@ export const metadata = { title: "Analytics | FreeDrops Admin" };
 
 const stats = [
   { label: "Total Bottles", value: "78,000", icon: "lucide:package", color: "text-purple-600", bg: "bg-purple-50" },
-  { label: "Total Scans", value: "142,890", icon: "lucide:scan", color: "text-[#D63839]", bg: "bg-red-50" },
-  { label: "Unique Scans", value: "98,340", icon: "lucide:scan-qr-code", color: "text-blue-600", bg: "bg-blue-50" },
+  { label: "Total Scans", value: "142,890", icon: "lucide:scan-qr-code", color: "text-[#D63839]", bg: "bg-red-50" },
+  { label: "Unique Scans", value: "98,340", icon: "lucide:qr-code", color: "text-blue-600", bg: "bg-blue-50" },
   { label: "Total Clicks", value: "12,402", icon: "lucide:mouse-pointer-click", color: "text-emerald-600", bg: "bg-emerald-50" },
   { label: "Total Leads", value: "842", icon: "lucide:user-check", color: "text-amber-600", bg: "bg-amber-50" },
   { label: "Avg. Conversion", value: "6.8%", icon: "lucide:trending-up", color: "text-purple-600", bg: "bg-purple-50" },

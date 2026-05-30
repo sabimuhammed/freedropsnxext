@@ -114,7 +114,7 @@ export default function SponsorProfilePage() {
           <AnimatedCell className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
             <div className="flex items-center justify-between mb-3">
               <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600">
-                <Icon icon="lucide:qr-code" className="text-xl" />
+                <Icon icon="lucide:scan-qr-code" className="text-xl" />
               </div>
             </div>
             <p className="text-sm font-medium text-gray-500">Total Scans</p>
@@ -125,7 +125,7 @@ export default function SponsorProfilePage() {
           <AnimatedCell className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
             <div className="flex items-center justify-between mb-3">
               <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
-                <Icon icon="lucide:scan-qr-code" className="text-xl" />
+                <Icon icon="lucide:qr-code" className="text-xl" />
               </div>
             </div>
             <p className="text-sm font-medium text-gray-500">Total Unique Scans</p>

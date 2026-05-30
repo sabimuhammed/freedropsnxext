@@ -17,14 +17,14 @@ const stats = [
   {
     label: "Total Scans",
     value: "142,890",
-    icon: "lucide:scan",
+    icon: "lucide:scan-qr-code",
     color: "text-[#D63839]",
     bg: "bg-red-50",
   },
   {
     label: "Total Unique Scans",
     value: "122,890",
-    icon: "lucide:scan-qr-code",
+    icon: "lucide:qr-code",
     color: "text-[#D63839]",
     bg: "bg-red-50",
   },
