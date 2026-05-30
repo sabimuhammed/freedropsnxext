@@ -30,12 +30,22 @@ export default function CreateCampaignStep1Page() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Campaign Name</label>
-                <input type="text" placeholder="e.g. Summer Splash Refresh 2024" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] focus:border-[#D63839] outline-none transition-all text-sm" />
+                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Sponsor</label>
+                <div className="relative">
+                  <Icon icon="lucide:building-2" className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                  <select className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] focus:border-[#D63839] outline-none transition-all text-sm bg-white appearance-none cursor-pointer text-gray-700">
+                    <option value="" disabled selected>Select a sponsor...</option>
+                    <option value="masafi-water">Masafi Water</option>
+                    <option value="etisalat-uae">Etisalat UAE</option>
+                    <option value="dp-world">DP World</option>
+                    <option value="emirates">Emirates</option>
+                  </select>
+                  <Icon icon="lucide:chevron-down" className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                </div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Sponsor</label>
-                <input type="text" placeholder="e.g. Masafi Water" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] focus:border-[#D63839] outline-none transition-all text-sm" />
+                <label className="text-sm font-bold text-gray-900 uppercase tracking-wider">Campaign Name</label>
+                <input type="text" placeholder="e.g. Summer Splash Refresh 2024" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#D63839] focus:border-[#D63839] outline-none transition-all text-sm" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
