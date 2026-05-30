@@ -33,7 +33,7 @@ const INITIAL_TAGS = [
   { name: "Stadium", icon: "lucide:flag", iconBg: "bg-amber-50", iconColor: "text-amber-500", description: "Sports arenas and event venues", usage: 4, status: "Inactive", created: "Jan 05, 2024" },
 ];
 
-const EMPTY_FORM = { name: "", description: "", icon: ICON_OPTIONS[0].value, status: "Active" };
+const EMPTY_FORM = { name: "", description: "", icon: ICON_OPTIONS[0].value, imageUrl: "", status: "Active" };
 
 function formatDate(date: Date) {
   return date.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" });
@@ -44,10 +44,15 @@ export default function CategoryTagsClient() {
   const [modalOpen, setModalOpen] = useState(false);
   const [form, setForm] = useState(EMPTY_FORM);
 
-  const selectedIconOption = ICON_OPTIONS.find((o) => o.value === form.icon) ?? ICON_OPTIONS[0];
-
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    setForm((prev) => ({ ...prev, imageUrl: url }));
   }
 
   function handleSubmit() {
@@ -60,6 +65,7 @@ export default function CategoryTagsClient() {
         icon: iconOpt.value,
         iconBg: iconOpt.iconBg,
         iconColor: iconOpt.iconColor,
+        imageUrl: form.imageUrl,
         description: form.description.trim(),
         usage: 0,
         status: form.status,
@@ -152,8 +158,12 @@ export default function CategoryTagsClient() {
                     </td>
                     <td className="px-4 py-5">
                       <div className="flex items-center gap-3">
-                        <div className={`w-9 h-9 rounded-xl ${tag.iconBg} flex items-center justify-center shrink-0`}>
-                          <Icon icon={tag.icon} className={`${tag.iconColor} text-lg`} />
+                        <div className={`w-9 h-9 rounded-xl ${tag.iconBg} flex items-center justify-center shrink-0 overflow-hidden`}>
+                          {(tag as any).imageUrl ? (
+                            <img src={(tag as any).imageUrl} alt={tag.name} className="w-full h-full object-cover" />
+                          ) : (
+                            <Icon icon={tag.icon} className={`${tag.iconColor} text-lg`} />
+                          )}
                         </div>
                         <span className="font-semibold text-gray-900">{tag.name}</span>
                       </div>
@@ -221,21 +231,20 @@ export default function CategoryTagsClient() {
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-sm font-semibold text-gray-700">Icon</label>
-                <div className="flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-3 bg-gray-50/50 focus-within:border-[#D63839] focus-within:ring-2 focus-within:ring-red-500/20 transition-all">
-                  <div className={`w-6 h-6 rounded-lg ${selectedIconOption.iconBg} flex items-center justify-center shrink-0`}>
-                    <Icon icon={selectedIconOption.value} className={`${selectedIconOption.iconColor} text-sm`} />
+                <label className="flex items-center gap-4 border border-dashed border-gray-300 rounded-xl px-4 py-4 bg-gray-50/50 hover:border-[#D63839] hover:bg-red-50/20 transition-all cursor-pointer">
+                  {form.imageUrl ? (
+                    <img src={form.imageUrl} alt="Tag icon" className="w-12 h-12 rounded-xl object-cover shrink-0" />
+                  ) : (
+                    <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
+                      <Icon icon="lucide:image-plus" className="text-gray-400 text-2xl" />
+                    </div>
+                  )}
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-sm font-medium text-gray-700">{form.imageUrl ? "Change image" : "Upload an image"}</span>
+                    <span className="text-xs text-gray-400">PNG, JPG, SVG up to 2MB</span>
                   </div>
-                  <select
-                    name="icon"
-                    value={form.icon}
-                    onChange={handleChange}
-                    className="bg-transparent text-sm text-gray-700 outline-none w-full cursor-pointer"
-                  >
-                    {ICON_OPTIONS.map((opt) => (
-                      <option key={opt.value} value={opt.value}>{opt.label}</option>
-                    ))}
-                  </select>
-                </div>
+                  <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
+                </label>
               </div>
 
               <div className="flex flex-col gap-1.5">
