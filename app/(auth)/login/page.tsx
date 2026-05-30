@@ -103,7 +103,7 @@ export default function LoginPage() {
       </main>
 
       <footer className="p-8 flex flex-col md:flex-row items-center justify-center gap-4 text-sm text-slate-500">
-        <div className="flex items-center gap-2">
+        {/* <div className="flex items-center gap-2">
           <span>Need help? Contact support via</span>
           <a
             href="https://wa.me/"
@@ -112,9 +112,9 @@ export default function LoginPage() {
             <Icon icon="logos:whatsapp-icon" className="text-lg" />
             WhatsApp Support
           </a>
-        </div>
+        </div> */}
         <div className="hidden md:block w-1 h-1 bg-slate-300 rounded-full mx-2" />
-        <p>© 2024 FreeDrops Advertising LLC</p>
+        <p>© 2026 FreeDrops Advertising LLC</p>
       </footer>
     </div>
     </AnimatedPage>

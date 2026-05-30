@@ -42,13 +42,13 @@ export default function CampaignOverviewPage({ params }: { params: { id: string 
 
       <AnimatedGrid className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         {[
-          { label: "Totel Bottles", value: "11.0%", sub: "+2.1% vs avg", icon: "lucide:package", color: "text-blue-600", bg: "bg-blue-50" },
-          { label: "Bottles Scanned", value: "12,504", sub: "83.4% of 15,000", icon: "lucide:droplets", color: "text-[#D63839]", bg: "bg-red-50" },
-          { label: "Totel Unique Bottle Scans", value: "11.0%", sub: "+2.1% vs avg", icon: "lucide:scan-qr-code", color: "text-[#D63839]", bg: "bg-red-50" },
+          { label: "Totel Bottles", value: "131", sub: "+2.1% vs avg", icon: "lucide:package", color: "text-blue-600", bg: "bg-blue-50" },
+          { label: "Totel Unique Bottles Scans", value: "12,504", sub: "83.4% of 15,000", icon: "lucide:droplets", color: "text-[#D63839]", bg: "bg-red-50" },
+          { label: "Totel Scans", value: "112", sub: "+2.1% vs avg", icon: "lucide:scan-qr-code", color: "text-[#D63839]", bg: "bg-red-50" },
 
           { label: "Total Clicks", value: "3,218", sub: "25.7% CTR", icon: "lucide:mouse-pointer-click", color: "text-blue-600", bg: "bg-blue-50" },
           { label: "Leads Captured", value: "452", sub: "14.0% lead rate", icon: "lucide:users", color: "text-emerald-600", bg: "bg-emerald-50" },
-          { label: "Conversion Rate", value: "14.0%", sub: "+2.1% vs avg", icon: "lucide:trending-up", color: "text-purple-600", bg: "bg-purple-50" },
+          { label: "Conversion Rate", value: "144", sub: "+2.1% vs avg", icon: "lucide:trending-up", color: "text-purple-600", bg: "bg-purple-50" },
         ].map((s) => (
           <AnimatedCell key={s.label} className="detail-card p-5 rounded-2xl">
             <div className={`w-9 h-9 ${s.bg} rounded-xl flex items-center justify-center mb-3`}>

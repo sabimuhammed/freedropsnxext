@@ -89,7 +89,7 @@ export default function AdminDashboardPage() {
       <header className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-          <p className="text-sm text-gray-500">Welcome back, Ahmed. Here's what's happening across the network.</p>
+          <p className="text-sm text-gray-500">Welcome back, Here's what's happening across the network.</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="relative min-w-[300px]">

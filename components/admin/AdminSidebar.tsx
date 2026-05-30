@@ -9,6 +9,7 @@ const navItems = [
   { id: "campaigns", href: "/admin/campaigns", icon: "lucide:megaphone", label: "Campaigns" },
   { id: "sponsors", href: "/admin/sponsors", icon: "lucide:building-2", label: "Sponsors" },
   { id: "locations", href: "/admin/locations", icon: "lucide:map-pin", label: "Locations" },
+  { id: "category-tags", href: "/admin/category-tags", icon: "lucide:tag", label: "Category Tags" },
   { id: "qr", href: "/admin/qr-links", icon: "lucide:qr-code", label: "QR Codes" },
 ];
 
